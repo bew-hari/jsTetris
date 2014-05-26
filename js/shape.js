@@ -7,32 +7,88 @@ $(document).ready(function(){
 
     shape.printShape();
     shape.setShape(Shape.shapeType.TShape);
+    shape.printShape();
+    shape.setRandomShape();
+    shape.printShape();
 });
-
 
 
 
 // Shape constructor
 function Shape(){
-    this.type = Shape.shapeType.NoShape;
-    this.coords = Shape.coordsTable[0];
+    var type = Shape.shapeType.NoShape;
+    var coords = Shape.coordsTable[0];
+
+    this.printShape = function(){ document.write("Shape: " + this.getShape());};
+
+    // sets type of this Shape object and sets coordinates accordingly
+    this.setShape = function(shapeType){
+        type = shapeType;
+        coords = Shape.coordsTable[shapeType];
+    };
+    this.setRandomShape = function(){
+        var rand = Math.floor(Math.random() * 7 + 1);
+        type = rand;
+        coords = Shape.coordsTable[rand];
+    };
+
+    // sets the coordinates at location index
+    var setX = function(index, x){ coords[index][0] = x};
+    var setY = function(index, y){ coords[index][1] = y};
+
+    // returns type of this Shape object
+    this.getShape = function(){ return type;};
+
+    // returns the coordinates at location index
+    this.x = function(index){ return coords[index][0];};
+    this.y = function(index){ return coords[index][1];};
+
+    // returns the minimum coordinate of this Shape
+    this.minX = function(){
+        var m = this.x(0);
+        for (var i = 1; i < 4; i++)
+            m = Math.min(m, this.x(i));
+        return m;
+    };
+    this.minY = function(){
+        var m = this.y(0);
+        for (var i = 1; i < 4; i++)
+            m = Math.min(m, this.y(i));
+        return m;
+    };
+
+    // sets the coordinates of this Shape with left rotation
+    this.rotateLeft = function(){
+        if (type != Shape.shapeType.SquareShape){
+            var thisShape = new Shape();
+            thisShape.setShape(type);
+
+            for (var i = 0; i < 4; i++){
+                this.setX(i, thisShape.y(i));
+                this.setY(i, -thisShape.x(i));
+            }
+        }
+        return this;
+    };
+
+    // sets the coordinates of this Shape with right rotation
+    this.rotateLeft = function(){
+        if (type != Shape.shapeType.SquareShape){
+            var thisShape = new Shape();
+            thisShape.setShape(type);
+
+            for (var i = 0; i < 4; i++){
+                this.setX(i, -thisShape.y(i));
+                this.setY(i, thisShape.x(i));
+            }
+        }
+        return this;
+    };
 }
 
-// sets type of this Shape object and sets coordinates accordingly
-Shape.prototype.setShape = function(shapeType){
-    this.type = shapeType;
-    this.coords = Shape.coordsTable[shapeType];
-};
 
-// returns type of this Shape object
-Shape.prototype.getShape = function(){
-    return this.type;
-};
 
-// prints Shape type
-Shape.prototype.printShape = function(){
-    document.write("Shape: " + this.getShape());
-};
+
 
 // shape type reference
 Shape.shapeType = {
