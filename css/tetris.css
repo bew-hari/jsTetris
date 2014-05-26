@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+table.board {
+    border-spacing: 1px;
+    border: 1px solid black;
+}
+
+table.board td {
+    width: 30px;
+    height: 30px;
+    background-color: red;
+}

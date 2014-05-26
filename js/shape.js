@@ -2,7 +2,7 @@
  * Created by bewharichanwong on 5/25/14 AD.
  */
 
-$(document).ready(function(){
+/*$(document).ready(function(){
     var shape = new Shape();
 
     shape.printShape();
@@ -10,7 +10,7 @@ $(document).ready(function(){
     shape.printShape();
     shape.setRandomShape();
     shape.printShape();
-});
+});*/
 
 
 
@@ -100,7 +100,20 @@ Shape.shapeType = {
     SquareShape: 5,
     LShape: 6,
     MirroredLShape: 7
-};
+ };
+
+/*[
+    "NoShape",
+    "ZShape",
+    "SShape",
+    "LineShape",
+    "TShape",
+    "SquareShape",
+    "LShape",
+    "MirroredLShape"
+]; */
+
+
 
 // shape coordinates reference table
 Shape.coordsTable = [
