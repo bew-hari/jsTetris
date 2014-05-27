@@ -3,46 +3,16 @@
     padding: 0;
 }
 
-table {
-    border-spacing: 1px;
-    border: 10px solid #aaa;
-    background-color: black;
-}
-
-tr.spawnArea {
-    display: none;
-}
-
 td {
     width: 30px;
     height: 30px;
-    background-color: #333;
 }
 
-td.ZShape {
-    background-color: red;
-}
-
-td.SShape {
-    background-color: lawngreen;
-}
-
-td.LineShape {
-    background-color: darkblue;
-}
-
-td.TShape {
-    background-color: yellow;
-}
-
-td.SquareShape {
-    background-color: deeppink;
-}
-
-td.LShape {
-    background-color: darkorange;
-}
-
-td.MirroredLShape {
-    background-color: deepskyblue;
-}
+td.NoShape { background-color: #333;}
+td.ZShape { background-color: red;}
+td.SShape { background-color: lawngreen;}
+td.LineShape { background-color: royalblue;}
+td.TShape { background-color: yellow;}
+td.SquareShape { background-color: hotpink;}
+td.LShape { background-color: darkorange;}
+td.MirroredLShape { background-color: deepskyblue;}

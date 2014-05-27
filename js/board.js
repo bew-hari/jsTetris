@@ -8,6 +8,8 @@ function Board(){
     var self = this;
     var boardID;
 
+    var curX = 0;
+    var curY = 0;
     var curPiece = new Shape();
     var nextPiece = new Shape();
     var heldPiece = new Shape();
@@ -15,11 +17,10 @@ function Board(){
     var isPaused = false;
     var isStarted = false;
 
-    var curX = 0;
-    var curY = 0;
-
     var board = new Array(Board.BOARD_WIDTH * (Board.BOARD_HEIGHT+Board.SPWN_HEIGHT));
     var timer;
+
+    var score = 0;
 
     // ID set/get
     self.setID = function(id){ boardID = id;};
@@ -36,6 +37,7 @@ function Board(){
 
     // removes full lines on the board
     var removeFullLines = function(){
+        var numLines = 0;
 
         for (var i = Board.BOARD_HEIGHT - 1; i >= 0; i--){
             var isFull = true;
@@ -50,6 +52,7 @@ function Board(){
 
             // copy everything above full line down one line
             if (isFull){
+                numLines++;
                 for (var k = i; k < Board.BOARD_HEIGHT - 1; k++) {
                     for (j = 0; j < Board.BOARD_WIDTH; j++)
                     board[(k * Board.BOARD_WIDTH) + j] = self.shapeAt(j, k + 1);
@@ -57,9 +60,12 @@ function Board(){
             }
         }
 
-        //
-        curPiece.setShape(Shape.shapeType.NoShape);
-        repaint();
+        if (numLines > 0){
+            score += numLines;
+            document.getElementById(boardID+'Score').innerHTML = score.toString();
+            curPiece.setShape(Shape.shapeType.NoShape);
+            repaint();
+        }
     };
 
     // paints board by altering table cell classes
@@ -93,6 +99,8 @@ function Board(){
 
         if (overflow()){
             clearInterval(timer);
+            isStarted = false;
+            window.removeEventListener('keydown', self.respond, false);
             alert("Game Over!");
         }
     };
@@ -184,10 +192,12 @@ function Board(){
 
     self.respond = function(e){
 
+        //e.preventDefault();
+
         if (!isStarted)
             return;
 
-        if (e.keyCode == 80)
+        if (e.keyCode == 80)    // 'P' pressed
             self.pause();
 
         if (isPaused)

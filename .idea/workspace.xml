@@ -32,19 +32,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tetris.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="tetris.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/tetris.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="27" selection-start="98" selection-end="98" vertical-scroll-proportion="0.15107913" vertical-offset="0" max-vertical-offset="795">
+            <state line="4" column="0" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tetris.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="tetris.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/tetris.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="20" selection-start="403" selection-end="403" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="900">
+            <state line="11" column="0" selection-start="200" selection-end="200" vertical-scroll-proportion="0.23741007" vertical-offset="0" max-vertical-offset="1455">
               <folding />
             </state>
           </provider>
@@ -53,7 +53,7 @@
       <file leaf-file-name="board.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/board.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="195" column="22" selection-start="5258" selection-end="5258" vertical-scroll-proportion="0.0" vertical-offset="2545" max-vertical-offset="3375">
+            <state line="207" column="22" selection-start="5700" selection-end="5700" vertical-scroll-proportion="0.0" vertical-offset="2815" max-vertical-offset="3525">
               <folding />
             </state>
           </provider>
@@ -62,11 +62,9 @@
       <file leaf-file-name="shape.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/shape.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="35" selection-start="985" selection-end="985" vertical-scroll-proportion="6.923077" vertical-offset="750" max-vertical-offset="2430">
+            <state line="138" column="38" selection-start="3496" selection-end="3496" vertical-scroll-proportion="-13.846154" vertical-offset="1710" max-vertical-offset="2430">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <marker date="1401167465000" expanded="true" signature="306:2888" placeholder="{...}" />
-                <marker date="1401167465000" expanded="true" signature="1892:2350" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -84,9 +82,9 @@
       <list>
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/shape.js" />
-        <option value="$PROJECT_DIR$/js/tetris.js" />
-        <option value="$PROJECT_DIR$/js/board.js" />
         <option value="$PROJECT_DIR$/css/tetris.css" />
+        <option value="$PROJECT_DIR$/js/board.js" />
+        <option value="$PROJECT_DIR$/js/tetris.js" />
       </list>
     </option>
   </component>
@@ -238,17 +236,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/shape.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="35" selection-start="985" selection-end="985" vertical-scroll-proportion="6.923077" vertical-offset="750" max-vertical-offset="2430">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <marker date="1401167465000" expanded="true" signature="306:2888" placeholder="{...}" />
-            <marker date="1401167465000" expanded="true" signature="1892:2350" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="81" selection-start="127" selection-end="280" vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="330">
@@ -256,23 +243,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/css/tetris.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/board.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="195" column="22" selection-start="5258" selection-end="5258" vertical-scroll-proportion="0.0" vertical-offset="2545" max-vertical-offset="3375">
+        <state line="207" column="22" selection-start="5700" selection-end="5700" vertical-scroll-proportion="0.0" vertical-offset="2815" max-vertical-offset="3525">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/shape.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="138" column="38" selection-start="3496" selection-end="3496" vertical-scroll-proportion="-13.846154" vertical-offset="1710" max-vertical-offset="2430">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/tetris.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="20" selection-start="403" selection-end="403" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="900">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/tetris.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="27" selection-start="98" selection-end="98" vertical-scroll-proportion="0.15107913" vertical-offset="0" max-vertical-offset="795">
+        <state line="11" column="0" selection-start="200" selection-end="200" vertical-scroll-proportion="0.23741007" vertical-offset="0" max-vertical-offset="1455">
           <folding />
         </state>
       </provider>
