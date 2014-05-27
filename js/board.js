@@ -13,6 +13,7 @@ function Board(){
     var heldPiece = new Shape();
 
     var isPaused = false;
+    var isStarted = false;
 
     var curX = 0;
     var curY = 0;
@@ -33,6 +34,33 @@ function Board(){
             board[i] = Shape.shapeType.NoShape;
     };
 
+    // removes full lines on the board
+    var removeFullLines = function(){
+
+        for (var i = Board.BOARD_HEIGHT - 1; i >= 0; i--){
+            var isFull = true;
+
+            // check if line has gap
+            for (var j = 0; j < Board.BOARD_WIDTH; j++) {
+                if (self.shapeAt(j, i) == Shape.shapeType.NoShape) {
+                    isFull = false;
+                    break;
+                }
+            }
+
+            // copy everything above full line down one line
+            if (isFull){
+                for (var k = i; k < Board.BOARD_HEIGHT - 1; k++) {
+                    for (j = 0; j < Board.BOARD_WIDTH; j++)
+                    board[(k * Board.BOARD_WIDTH) + j] = self.shapeAt(j, k + 1);
+                }
+            }
+        }
+
+        //
+        curPiece.setShape(Shape.shapeType.NoShape);
+        repaint();
+    };
 
     // paints board by altering table cell classes
     var repaint = function(){
@@ -72,13 +100,13 @@ function Board(){
     // moves piece to specified (newX,newY) coordinates
     // returns true if possible, false otherwise
     var movePiece = function(newPiece, newX, newY){
-        var x, y, i;
-        for (i = 0; i < 4; i++) {
+        var x, y;
+        for (var i = 0; i < 4; i++) {
             x = newX + newPiece.x(i);
             y = newY + newPiece.y(i);
             if (x < 0 || x >= Board.BOARD_WIDTH || y < 0 || y >= Board.BOARD_HEIGHT+Board.SPWN_HEIGHT)
                 return false;
-            if (self.shapeAt(x, y) != Shape.shapeType.NoShape)
+            else if (self.shapeAt(x, y) != Shape.shapeType.NoShape)
                 return false;
         }
 
@@ -108,6 +136,7 @@ function Board(){
             board[(y * Board.BOARD_WIDTH) + x] = curPiece.getShape();
         }
 
+        removeFullLines();
         newPiece();
     };
 
@@ -118,42 +147,63 @@ function Board(){
         }
     };
 
+    var dropDown = function(){
+        while(movePiece(curPiece, curX, curY-1)){};
+    };
+
     // updates game board
     var tick = function(){
-
         oneLineDown();
     };
 
     // starts board and sets timer
     self.start = function(){
+        isStarted = true;
 
         clearBoard();
         nextPiece.setRandomShape();
         newPiece();
 
-        timer = setInterval(function(){ tick();}, 300);
+        timer = setInterval(function(){ tick();}, 400);
+    };
+
+    self.pause = function(){
+        if (!isStarted)
+            return;
+
+        isPaused = !isPaused;
+
+        if (isPaused){
+            clearInterval(timer);
+        }
+        else {
+            timer = setInterval(function(){ tick();}, 400);
+        }
     };
 
 
     self.respond = function(e){
         switch (e.keyCode){
-            case 37:
-                // left key pressed
+            case 32:    // space pressed
+                dropDown();
+                break;
+            case 37:    // left key pressed
                 movePiece(curPiece, curX - 1, curY);
                 break;
-            case 38:
-                // up key pressed
-                movePiece(curPiece.rotateRight(), curX, curY);
+            case 38:    // up key pressed
+                if(!movePiece(curPiece.rotateRight(), curX, curY))
+                    curPiece.rotateLeft();
                 break;
-            case 39:
-                // right key pressed
+            case 39:    // right key pressed
                 movePiece(curPiece, curX + 1, curY);
                 break;
-            case 40:
+            case 40:    // down key pressed
                 movePiece(curPiece, curX, curY - 1);
                 break;
-
-        };
+            case 80:    // 'P' pressed
+                self.pause();
+                break;
+        }
     };
 }
 

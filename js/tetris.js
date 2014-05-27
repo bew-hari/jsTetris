@@ -9,7 +9,6 @@ window.onload = function(){
 
     tetrisBoard.start();
 
-
     var canvas = document.getElementById('tetrisCanvas');
 
     /*var leftPanel = document.createElement('table');
@@ -36,6 +35,7 @@ window.onload = function(){
 
 
     window.addEventListener('keydown', tetrisBoard.respond, false);
+    //window.addEventListener('keyup', tetrisBoard.respondKeyUp, false);
 
 
 

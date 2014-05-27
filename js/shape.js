@@ -32,8 +32,7 @@ function Shape(){
         }
     };
     self.setRandomShape = function(){
-        var rand = Math.floor(Math.random() * 7 + 1);
-        type = rand;
+        type = Math.floor(Math.random() * 7 + 1);
     };
 
     // sets the coordinates at location index
@@ -64,11 +63,11 @@ function Shape(){
         return m;
     };
 
-    // sets the coordinates of this Shape with left rotation
+    // returns Shape with left rotation
     self.rotateLeft = function(){
         if (type != Shape.shapeType.SquareShape){
 
-            var prevCoords = [];
+            var prevCoords = [[0,0],[0,0],[0,0],[0,0]];
             for (var i = 0; i < 4 ; i++) {
                 for (var j = 0; j < 2; j++) {
                     prevCoords[i][j] = coords[i][j];
@@ -83,7 +82,7 @@ function Shape(){
         return self;
     };
 
-    // sets the coordinates of this Shape with right rotation
+    // returns Shape with right rotation
     self.rotateRight = function(){
         if (type != Shape.shapeType.SquareShape){
 
@@ -102,7 +101,6 @@ function Shape(){
         return self;
     };
 }
-
 
 
 
