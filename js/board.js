@@ -148,7 +148,7 @@ function Board(){
     };
 
     var dropDown = function(){
-        while(movePiece(curPiece, curX, curY-1)){};
+        while(movePiece(curPiece, curX, curY-1)){}
     };
 
     // updates game board
@@ -164,7 +164,7 @@ function Board(){
         nextPiece.setRandomShape();
         newPiece();
 
-        timer = setInterval(function(){ tick();}, 400);
+        timer = setInterval(function(){ tick();}, Board.SPEED);
     };
 
     self.pause = function(){
@@ -177,12 +177,22 @@ function Board(){
             clearInterval(timer);
         }
         else {
-            timer = setInterval(function(){ tick();}, 400);
+            timer = setInterval(function(){ tick();}, Board.SPEED);
         }
     };
 
 
     self.respond = function(e){
+
+        if (!isStarted)
+            return;
+
+        if (e.keyCode == 80)
+            self.pause();
+
+        if (isPaused)
+            return;
+
         switch (e.keyCode){
             case 32:    // space pressed
                 dropDown();
@@ -200,9 +210,6 @@ function Board(){
             case 40:    // down key pressed
                 movePiece(curPiece, curX, curY - 1);
                 break;
-            case 80:    // 'P' pressed
-                self.pause();
-                break;
         }
     };
 }
@@ -210,3 +217,4 @@ function Board(){
 Board.BOARD_WIDTH = 10;
 Board.BOARD_HEIGHT = 20;
 Board.SPWN_HEIGHT = 4;
+Board.SPEED = 300;
