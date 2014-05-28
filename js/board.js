@@ -82,7 +82,8 @@ function Board(){
         for (var i = 0; i < Board.BOARD_HEIGHT+Board.SPWN_HEIGHT; i++){
             for (var j = 0; j < Board.BOARD_WIDTH; j++){
                 cell = document.getElementById(boardID).rows[Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1 - i].cells[j];
-                cell.className = Shape.shapeTypeString[self.shapeAt(j,i)];
+                cell.className = "tetrisCell";
+                cell.classList.add(Shape.shapeTypeString[self.shapeAt(j,i)]);
             }
         }
 
@@ -92,7 +93,8 @@ function Board(){
                 x = curX + curPiece.x(i);
                 y = curY + curPiece.y(i);
                 cell = document.getElementById(boardID).rows[Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1 - y].cells[x];
-                cell.className = Shape.shapeTypeString[curPiece.getShape()];
+                cell.className = "tetrisCell";
+                cell.classList.add(Shape.shapeTypeString[curPiece.getShape()]);
             }
         }
     };
@@ -111,6 +113,8 @@ function Board(){
             window.removeEventListener('keydown', self.respond, false);
             alert("Game Over!");
         }
+
+        drawNext();
     };
 
     // moves piece to specified (newX,newY) coordinates
@@ -178,6 +182,7 @@ function Board(){
 
         clearBoard();
         nextPiece.setRandomShape();
+
         newPiece();
 
         document.getElementById(boardID+scoreHandle).innerHTML = score.toString();
@@ -206,9 +211,7 @@ function Board(){
         panel.addHeldHandle(heldHandle);
     };
 
-    self.getPanel = function(){
-        return panel.getPanel();
-    };
+    self.getPanel = function(){ return panel.getPanel();};
 
 
     self.setDispBoard = function(){
@@ -231,9 +234,34 @@ function Board(){
         }
     };
 
-    self.getDispBoard = function(){
-        return dispBoard;
+    var drawNext = function(){
+        var nextPreviewTable = document.getElementById(boardID + nextHandle + "Preview");
+
+        var x, y;
+        var cell;
+        var minX = nextPiece.minX();
+        var minY = nextPiece.minY();
+
+       /* alert(nextPiece.x(0) + " " + nextPiece.y(0) + "\n" +
+            nextPiece.x(1) + " " + nextPiece.y(1) + "\n" +
+            nextPiece.x(2) + " " + nextPiece.y(2) + "\n" +
+            nextPiece.x(3) + " " + nextPiece.y(3) + "\n");*/
+
+        for (var i = 0; i < 4; i++){
+            x = nextPiece.x(i) - minX;
+            y = nextPiece.y(i) - minY;
+
+            cell = nextPreviewTable.rows[x].cells[y];
+            cell.className = "previewCell";
+            cell.classList.add(Shape.shapeTypeString[nextPiece.getShape()]);
+        }
     };
+
+    var drawHeld = function(){
+
+    };
+
+    self.getDispBoard = function(){ return dispBoard;};
 
     self.respond = function(e){
 
@@ -273,3 +301,21 @@ Board.BOARD_WIDTH = 10;
 Board.BOARD_HEIGHT = 20;
 Board.SPWN_HEIGHT = 4;
 Board.SPEED = 300;
+
+
+
+function setup(tetrisBoard, boardID){
+    numPlayers++;
+
+    tetrisBoard.setID(boardID);
+
+    var canvas = document.getElementById("tetrisCanvas");
+
+    tetrisBoard.setDispBoard();
+    canvas.appendChild(tetrisBoard.getDispBoard());
+
+    tetrisBoard.setPanel();
+    canvas.appendChild(tetrisBoard.getPanel());
+
+    window.addEventListener('keydown', tetrisBoard.respond, false);
+}

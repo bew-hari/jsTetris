@@ -15,11 +15,13 @@ function Panel(id){
     };
 
     self.addNextHandle = function(handle){
-        addBox("next", handle);
+        var content = addBox("next", handle);
+        addPiecePreview(content, handle);
     };
 
     self.addHeldHandle = function(handle){
-        addBox("held", handle);
+        var content = addBox("held", handle);
+        addPiecePreview(content, handle);
     };
 
     self.getPanel = function(){ return panel;};
@@ -27,7 +29,8 @@ function Panel(id){
     var addBox = function(typeStr, handle){
 
         var box = document.createElement('table');
-        box.className = typeStr + "Box";
+        box.classList.add("panelTable");
+        box.classList.add(typeStr + "Box");
 
         var boxRow = document.createElement('tr');
         var boxLabel = document.createElement('th');
@@ -42,12 +45,11 @@ function Panel(id){
         content.className = typeStr;
         content.id = boardID + handle;
 
-        if (typeStr == "next" || typeStr == "held")
-            addPiecePreview(content, handle);
-
         boxRow.appendChild(content);
         box.appendChild(boxRow);
         panel.appendChild(box);
+
+        return content;
     };
 
     var addPiecePreview = function(container, handle){
@@ -61,8 +63,7 @@ function Panel(id){
             row = document.createElement('tr');
             for (var j = 0; j < 2; j++){
                 cell = document.createElement('td');
-                cell.classList.add(Shape.shapeTypeString[1]);
-                cell.classList.add("previewCell");
+                cell.className = "previewCell";
                 row.appendChild(cell);
             }
             smallTable.appendChild(row);

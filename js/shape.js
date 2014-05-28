@@ -18,7 +18,7 @@
 function Shape(){
     var self = this;
     var type = Shape.shapeType.NoShape;
-    var coords = Shape.coordsTable[0];
+    var coords = [[0,0],[0,0],[0,0],[0,0]];
 
     self.printShape = function(){ document.write("Shape: " + self.getShape());};
 
@@ -32,7 +32,7 @@ function Shape(){
         }
     };
     self.setRandomShape = function(){
-        type = Math.floor(Math.random() * 7 + 1);
+        self.setShape(Math.floor(Math.random() * 7 + 1));
     };
 
     // sets the coordinates at location index
@@ -134,13 +134,13 @@ Shape.shapeTypeString = [
 // shape coordinates reference table
 Shape.coordsTable = [
     [[ 0, 0], [ 0, 0], [ 0, 0], [ 0, 0]],
-    [[ 0,-1], [ 0, 0], [-1, 0], [-1, 1]],   // Z
-    [[ 0,-1], [ 0, 0], [ 1, 0], [ 1, 1]],   // S
+    [[ 1, 0], [ 0, 0], [ 0, 1], [-1, 1]],   // Z
+    [[ 1, 1], [ 0, 1], [ 0, 0], [-1, 0]],   // S
     [[-1, 0], [ 0, 0], [ 1, 0], [ 2, 0]],   // Line
     [[-1, 0], [ 0, 0], [ 1, 0], [ 0, 1]],   // T
     [[ 0, 0], [ 1, 0], [ 0, 1], [ 1, 1]],   // Sqr
-    [[-1,-1], [ 0,-1], [ 0, 0], [ 0, 1]],   // L
-    [[ 1,-1], [ 0,-1], [ 0, 0], [ 0, 1]]    // M-L
+    [[-1, 0], [ 0, 0], [ 1, 0], [ 1, 1]],   // L
+    [[-1, 1], [-1, 0], [ 0, 0], [ 1, 0]]    // M-L
 ];
 
 /*Shape.coordsTable = [
