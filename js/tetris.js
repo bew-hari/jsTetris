@@ -94,8 +94,10 @@ function setup(tetrisBoard, boardID){
     }
     canvas.appendChild(board);
 
+    tetrisBoard.setPanel();
+    canvas.appendChild(tetrisBoard.getPanel());
 
-    var panel = document.createElement('div');
+    /*var panel = document.createElement('div');
     panel.className = "panel";
 
     // score box
@@ -117,7 +119,7 @@ function setup(tetrisBoard, boardID){
 
     boxRow.appendChild(content);
     box.appendChild(boxRow);
-    panel.appendChild(box);
+    panel.appendChild(box);*/
 
 
 
@@ -149,7 +151,7 @@ function setup(tetrisBoard, boardID){
 
 
 
-    canvas.appendChild(panel);
+    //canvas.appendChild(panel);
 
     window.addEventListener('keydown', tetrisBoard.respond, false);
 }

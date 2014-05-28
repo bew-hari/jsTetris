@@ -22,6 +22,8 @@ function Board(){
 
     var score = 0;
 
+    var panel;
+
     // ID set/get
     self.setID = function(id){ boardID = id;};
     self.getID = function(){ return boardID;};
@@ -62,7 +64,7 @@ function Board(){
 
         if (numLines > 0){
             score += numLines;
-            document.getElementById(boardID+'Score').innerHTML = score.toString();
+            document.getElementById(boardID+"Score").innerHTML = score.toString();
             curPiece.setShape(Shape.shapeType.NoShape);
             repaint();
         }
@@ -190,6 +192,17 @@ function Board(){
         }
     };
 
+
+    self.setPanel = function(){
+        var scoreHandle = "Score";
+
+        panel = new Panel(boardID);
+        panel.addBox(scoreHandle).setScoreHandle(scoreHandle);
+    };
+
+    self.getPanel = function(){
+        return panel.getPanel();
+    };
 
     self.respond = function(e){
 

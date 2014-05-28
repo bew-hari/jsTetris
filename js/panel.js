@@ -9,6 +9,9 @@ function Panel(id){
     var nextHandle;
     var heldHandle;
 
+    var panel = document.createElement('div');
+    panel.className = "panel";
+
     // handle set/get
     self.setScoreHandle = function(str){ scoreHandle = str; };
     self.getScoreHandle = function(){ return scoreHandle; };
@@ -17,12 +20,8 @@ function Panel(id){
     self.setHeldHandle = function(str){ heldHandle = str; };
     self.getHeldHandle = function(){ return heldHandle; };
 
-    var panel = document.createElement('div');
-    panel.className = "panel";
+    self.getPanel = function(){ return panel;};
 
-
-
-    self.setParent = function(parent){ parent.appendChild(panel);};
     self.addBox = function(handle){
         var lcHandle = handle.toLowerCase();
         var ucFirstHandle = lcHandle.ucfirst();
@@ -46,6 +45,8 @@ function Panel(id){
         boxRow.appendChild(content);
         box.appendChild(boxRow);
         panel.appendChild(box);
+
+        return self;
     };
 };
 
