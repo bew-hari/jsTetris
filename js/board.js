@@ -24,6 +24,10 @@ function Board(){
 
     var panel;
 
+    var scoreHandle = "Score";
+    var nextHandle = "Next";
+    var heldHandle = "Held";
+
     // ID set/get
     self.setID = function(id){ boardID = id;};
     self.getID = function(){ return boardID;};
@@ -64,7 +68,7 @@ function Board(){
 
         if (numLines > 0){
             score += numLines;
-            document.getElementById(boardID+"Score").innerHTML = score.toString();
+            document.getElementById(boardID+scoreHandle).innerHTML = score.toString();
             curPiece.setShape(Shape.shapeType.NoShape);
             repaint();
         }
@@ -174,7 +178,7 @@ function Board(){
         nextPiece.setRandomShape();
         newPiece();
 
-        document.getElementById(boardID+'Score').innerHTML = score.toString();
+        document.getElementById(boardID+scoreHandle).innerHTML = score.toString();
         timer = setInterval(function(){ tick();}, Board.SPEED);
     };
 
@@ -194,10 +198,10 @@ function Board(){
 
 
     self.setPanel = function(){
-        var scoreHandle = "Score";
-
         panel = new Panel(boardID);
-        panel.addBox(scoreHandle).setScoreHandle(scoreHandle);
+        panel.addScoreHandle(scoreHandle);
+        panel.addNextHandle(nextHandle);
+        panel.addHeldHandle(heldHandle);
     };
 
     self.getPanel = function(){

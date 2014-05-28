@@ -48,24 +48,27 @@ var panelTableStyle = "" +
 
 // offsets from top of canvas
 var scoreBoxOffsetFromTop = 20*scale +"px";
-var nextBoxOffsetFromTop = "200px";
+var nextBoxOffsetFromTop = 150*scale +"px";
+var heldBoxOffsetFromTop = 500*scale +"px";
 
-// score label th
-var scoreLabelStyle = "" +
+// label th
+var labelStyle = "" +
     "padding: "+ 5*scale +"px "+ 3*scale +"px "+ 5*scale +"px "+ 3*scale +"px;" +
     "border-bottom: "+ 3*scale +"px solid #888;" +
     "font-family: sans-serif;" +
     "font-size: "+ scale +"em;" +
     "color: white;";
 
-// score td
-var scoreStyle = "" +
+// content td
+var contentStyle = "" +
     "min-width: "+ 80*scale +"px;" +
     "height: "+ 80*scale +"px;"+
     "vertical-align: middle;" +
     "font-family: sans-serif;" +
     "font-size: "+ scale +"em;" +
     "color: white;";
+
+
 
 
 function setup(tetrisBoard, boardID){
@@ -188,17 +191,38 @@ function stylize(){
 
     var boards = document.getElementsByClassName("board");
     var panels = document.getElementsByClassName("panel");
+
     var scoreBoxes = document.getElementsByClassName("scoreBox");
     var scoreLabels = document.getElementsByClassName("scoreLabel");
     var scores = document.getElementsByClassName("score");
 
+    var nextBoxes = document.getElementsByClassName("nextBox");
+    var nextLabels = document.getElementsByClassName("nextLabel");
+    var nexts = document.getElementsByClassName("next");
+
+    var heldBoxes = document.getElementsByClassName("heldBox");
+    var heldLabels = document.getElementsByClassName("heldLabel");
+    var helds = document.getElementsByClassName("held");
+
     for (i = 0; i < numPlayers; i++){
         boards[i].style.cssText = boardStyle;
         panels[i].style.cssText = panelStyle;
+
         scoreBoxes[i].style.cssText = panelTableStyle;
         scoreBoxes[i].style.top = scoreBoxOffsetFromTop;
-        scoreLabels[i].style.cssText = scoreLabelStyle;
-        scores[i].style.cssText = scoreStyle;
+        scoreLabels[i].style.cssText = labelStyle;
+        scores[i].style.cssText = contentStyle;
+
+        nextBoxes[i].style.cssText = panelTableStyle;
+        nextBoxes[i].style.top = nextBoxOffsetFromTop;
+        nextLabels[i].style.cssText = labelStyle;
+        nexts[i].style.cssText = contentStyle;
+
+        heldBoxes[i].style.cssText = panelTableStyle;
+        heldBoxes[i].style.top = heldBoxOffsetFromTop;
+        heldLabels[i].style.cssText = labelStyle;
+        helds[i].style.cssText = contentStyle;
+
     }
 
     var tetrisCells = document.getElementsByClassName("tetrisCell");
