@@ -68,6 +68,15 @@ var contentStyle = "" +
     "font-size: "+ scale +"em;" +
     "color: white;";
 
+var previewTableStyle = "" +
+    "border-spacing: 1px;" +
+    "margin-left: auto;" +
+    "margin-right: auto;" +
+    "";
+
+var previewCellStyle = "" +
+    "width: "+ 10*scale +"px;" +
+    "height: "+ 10*scale +"px;";
 
 
 
@@ -78,109 +87,17 @@ function setup(tetrisBoard, boardID){
 
     var canvas = document.getElementById("tetrisCanvas");
 
-    var board = document.createElement('table');
-    board.className = "board";
-    board.id = boardID;
-
-    var row, cell;
-    for (var i = 0; i < tetrisBoard.constructor.BOARD_HEIGHT+tetrisBoard.constructor.SPWN_HEIGHT; i++){
-        row = document.createElement('tr');
-        if (i < 4)
-            row.className = "spawnArea";
-        for (var j = 0; j < tetrisBoard.constructor.BOARD_WIDTH; j++){
-            cell = document.createElement('td');
-            cell.className = Shape.shapeTypeString[tetrisBoard.shapeAt(j,i)];
-            cell.className = "tetrisCell";
-            row.appendChild(cell);
-        }
-        board.appendChild(row);
-    }
-    canvas.appendChild(board);
+    tetrisBoard.setDispBoard();
+    canvas.appendChild(tetrisBoard.getDispBoard());
 
     tetrisBoard.setPanel();
     canvas.appendChild(tetrisBoard.getPanel());
 
-    /*var panel = document.createElement('div');
-    panel.className = "panel";
-
-    // score box
-    var box = document.createElement('table');
-    box.className = "scoreBox";
-
-    var boxRow = document.createElement('tr');
-    var boxLabel = document.createElement('th');
-    boxLabel.className = "scoreLabel";
-    boxLabel.appendChild(document.createTextNode("Score"));
-
-    boxRow.appendChild(boxLabel);
-    box.appendChild(boxRow);
-
-    boxRow = document.createElement('tr');
-    var content = document.createElement('td');
-    content.className = "score";
-    content.id = boardID + "Score";
-
-    boxRow.appendChild(content);
-    box.appendChild(boxRow);
-    panel.appendChild(box);*/
 
 
-
-    /*// next box
-    box = document.createElement('table');
-    box.className = "nextBox";
-
-    boxRow = document.createElement('tr');
-    boxLabel = document.createElement('th');
-    boxLabel.className = "nextLabel";
-    boxLabel.appendChild(document.createTextNode("Next"));
-
-    boxRow.appendChild(boxLabel);
-    box.appendChild(boxRow);
-
-    boxRow = document.createElement('tr');
-    content = document.createElement('td');
-    content.className = "next";
-    content.id = boardID + "Next";
-
-    boxRow.appendChild(score);
-    box.appendChild(boxRow);
-    panel.appendChild(box);*/
-
-
-
-
-
-
-
-
-    //canvas.appendChild(panel);
 
     window.addEventListener('keydown', tetrisBoard.respond, false);
 }
-
-
-function addBox(panel){
-    var box = document.createElement('table');
-    box.className = "scoreBox";
-
-    var boxRow = document.createElement('tr');
-    var boxLabel = document.createElement('th');
-    boxLabel.className = "scoreLabel";
-    boxLabel.appendChild(document.createTextNode("Score"));
-
-    boxRow.appendChild(boxLabel);
-    box.appendChild(boxRow);
-
-    boxRow = document.createElement('tr');
-    var content = document.createElement('td');
-    content.className = "score";
-    content.id = "board" + "Score";
-
-    boxRow.appendChild(content);
-    box.appendChild(boxRow);
-    panel.appendChild(box);
-};
 
 
 function stylize(){
@@ -228,6 +145,15 @@ function stylize(){
     var tetrisCells = document.getElementsByClassName("tetrisCell");
     for (i = 0; i < tetrisCells.length; i++)
         tetrisCells[i].style.cssText = tetrisCellStyle;
+
+    var previewTables = document.getElementsByClassName("previewTable");
+    for (i = 0; i < previewTables.length; i++)
+        previewTables[i].style.cssText = previewTableStyle;
+
+    var previewCells = document.getElementsByClassName("previewCell");
+    for (i = 0; i < previewCells.length; i++)
+        previewCells[i].style.cssText = previewCellStyle;
+
 }
 
 

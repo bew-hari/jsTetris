@@ -42,9 +42,33 @@ function Panel(id){
         content.className = typeStr;
         content.id = boardID + handle;
 
+        if (typeStr == "next" || typeStr == "held")
+            addPiecePreview(content, handle);
+
         boxRow.appendChild(content);
         box.appendChild(boxRow);
         panel.appendChild(box);
+    };
+
+    var addPiecePreview = function(container, handle){
+
+        var smallTable = document.createElement('table');
+        smallTable.className = "previewTable";
+        smallTable.id = boardID + handle + "Preview";
+
+        var row, cell;
+        for (var i = 0; i < 4; i++){
+            row = document.createElement('tr');
+            for (var j = 0; j < 2; j++){
+                cell = document.createElement('td');
+                cell.classList.add(Shape.shapeTypeString[1]);
+                cell.classList.add("previewCell");
+                row.appendChild(cell);
+            }
+            smallTable.appendChild(row);
+        }
+
+        container.appendChild(smallTable);
     };
 };
 

@@ -7,10 +7,10 @@ body {
     background-color: cornsilk;
 }
 
-td {
+/*td {
     width: 30px;
     height: 30px;
-}
+}*/
 
 td.NoShape { background-color: #333;}
 td.ZShape { background-color: red;}

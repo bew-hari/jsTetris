@@ -22,8 +22,9 @@ function Board(){
 
     var score = 0;
 
+    // for display purposes
     var panel;
-
+    var dispBoard;
     var scoreHandle = "Score";
     var nextHandle = "Next";
     var heldHandle = "Held";
@@ -77,10 +78,11 @@ function Board(){
     // paints board by altering table cell classes
     var repaint = function(){
 
+        var cell;
         for (var i = 0; i < Board.BOARD_HEIGHT+Board.SPWN_HEIGHT; i++){
             for (var j = 0; j < Board.BOARD_WIDTH; j++){
-                document.getElementById(boardID).rows[Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1 - i].cells[j]
-                    .className = Shape.shapeTypeString[self.shapeAt(j,i)];
+                cell = document.getElementById(boardID).rows[Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1 - i].cells[j];
+                cell.className = Shape.shapeTypeString[self.shapeAt(j,i)];
             }
         }
 
@@ -89,8 +91,8 @@ function Board(){
             for (i = 0; i < 4; i++){
                 x = curX + curPiece.x(i);
                 y = curY + curPiece.y(i);
-                document.getElementById(boardID).rows[Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1 - y].cells[x]
-                    .className = Shape.shapeTypeString[curPiece.getShape()];
+                cell = document.getElementById(boardID).rows[Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1 - y].cells[x];
+                cell.className = Shape.shapeTypeString[curPiece.getShape()];
             }
         }
     };
@@ -206,6 +208,31 @@ function Board(){
 
     self.getPanel = function(){
         return panel.getPanel();
+    };
+
+
+    self.setDispBoard = function(){
+        dispBoard = document.createElement('table');
+        dispBoard.className = "board";
+        dispBoard.id = boardID;
+
+        var row, cell;
+        for (var i = 0; i < Board.BOARD_HEIGHT+Board.SPWN_HEIGHT; i++){
+            row = document.createElement('tr');
+            if (i < 4)
+                row.className = "spawnArea";
+            for (var j = 0; j < Board.BOARD_WIDTH; j++){
+                cell = document.createElement('td');
+                cell.classList.add("tetrisCell");
+                cell.classList.add(Shape.shapeTypeString[0]);
+                row.appendChild(cell);
+            }
+            dispBoard.appendChild(row);
+        }
+    };
+
+    self.getDispBoard = function(){
+        return dispBoard;
     };
 
     self.respond = function(e){
