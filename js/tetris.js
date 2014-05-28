@@ -98,31 +98,49 @@ function setup(tetrisBoard, boardID){
     var panel = document.createElement('div');
     panel.className = "panel";
 
-
     // score box
-    var scoreBox = document.createElement('table');
-    scoreBox.className = "scoreBox";
+    var box = document.createElement('table');
+    box.className = "scoreBox";
 
-    var scoreBoxRow = document.createElement('tr');
-    var scoreLabel = document.createElement('th');
-    scoreLabel.className = "scoreLabel";
-    scoreLabel.appendChild(document.createTextNode("Score"));
+    var boxRow = document.createElement('tr');
+    var boxLabel = document.createElement('th');
+    boxLabel.className = "scoreLabel";
+    boxLabel.appendChild(document.createTextNode("Score"));
 
-    scoreBoxRow.appendChild(scoreLabel);
-    scoreBox.appendChild(scoreBoxRow);
+    boxRow.appendChild(boxLabel);
+    box.appendChild(boxRow);
 
-    scoreBoxRow = document.createElement('tr');
-    var score = document.createElement('td');
-    score.className = "score";
-    score.id = boardID + "Score";
+    boxRow = document.createElement('tr');
+    var content = document.createElement('td');
+    content.className = "score";
+    content.id = boardID + "Score";
 
-    scoreBoxRow.appendChild(score);
-    scoreBox.appendChild(scoreBoxRow);
-    panel.appendChild(scoreBox);
+    boxRow.appendChild(content);
+    box.appendChild(boxRow);
+    panel.appendChild(box);
 
 
 
-    
+    /*// next box
+    box = document.createElement('table');
+    box.className = "nextBox";
+
+    boxRow = document.createElement('tr');
+    boxLabel = document.createElement('th');
+    boxLabel.className = "nextLabel";
+    boxLabel.appendChild(document.createTextNode("Next"));
+
+    boxRow.appendChild(boxLabel);
+    box.appendChild(boxRow);
+
+    boxRow = document.createElement('tr');
+    content = document.createElement('td');
+    content.className = "next";
+    content.id = boardID + "Next";
+
+    boxRow.appendChild(score);
+    box.appendChild(boxRow);
+    panel.appendChild(box);*/
 
 
 
@@ -135,6 +153,29 @@ function setup(tetrisBoard, boardID){
 
     window.addEventListener('keydown', tetrisBoard.respond, false);
 }
+
+
+function addBox(panel){
+    var box = document.createElement('table');
+    box.className = "scoreBox";
+
+    var boxRow = document.createElement('tr');
+    var boxLabel = document.createElement('th');
+    boxLabel.className = "scoreLabel";
+    boxLabel.appendChild(document.createTextNode("Score"));
+
+    boxRow.appendChild(boxLabel);
+    box.appendChild(boxRow);
+
+    boxRow = document.createElement('tr');
+    var content = document.createElement('td');
+    content.className = "score";
+    content.id = "board" + "Score";
+
+    boxRow.appendChild(content);
+    box.appendChild(boxRow);
+    panel.appendChild(box);
+};
 
 
 function stylize(){
