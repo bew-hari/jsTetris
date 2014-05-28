@@ -6,19 +6,26 @@ var numPlayers = 0;
 
 window.onload = function(){
     var tetrisBoard = new Board();
-    tetrisBoard.setID('board');
+    setup(tetrisBoard, "board");
+
     tetrisBoard.start();
 
-    setup(tetrisBoard);
+    stylize();
 };
 
+var scale = 1;
 
 var boardStyle = "" +
     "float: left;" +
     "display: block;" +
     "border-spacing: 1px;" +
-    "border: 10px solid #888;" +
+    "border: "+ 10*scale +"px solid #888;" +
+    "border-radius: "+ 10*scale +"px;" +
     "background-color: black;";
+
+var tetrisCellStyle = "" +
+    "width: "+ 30*scale +"px;" +
+    "height: "+ 30*scale +"px;";
 
 // div container
 var panelStyle = "" +
@@ -26,82 +33,134 @@ var panelStyle = "" +
     "display: block;" +
     "position: relative;";
 
-// table containing score
-var scoreBoxStyle = "" +
+// table in panel
+var panelTableStyle = "" +
     "display: block;" +
     "position: absolute;" +
-    "top: 100px;" +
+    "left: -"+ 10*scale +"px;" +
+    "border: "+ 5*scale +"px solid #888;" +
+    "border-collapse: collapse;" +
+    "border-radius: "+ 10*scale +"px;" +
+    "padding-left: "+ 5*scale +"px;" +
     "text-align: center;" +
-    "color: white;" +
-    "background-color: #333;";
+    "background-color: #333;" +
+    "z-index: -1;";
+
+// offsets from top of canvas
+var scoreBoxOffsetFromTop = 20*scale +"px";
+var nextBoxOffsetFromTop = "200px";
+
+// score label th
+var scoreLabelStyle = "" +
+    "padding: "+ 5*scale +"px "+ 3*scale +"px "+ 5*scale +"px "+ 3*scale +"px;" +
+    "border-bottom: "+ 3*scale +"px solid #888;" +
+    "font-family: sans-serif;" +
+    "font-size: "+ scale +"em;" +
+    "color: white;";
 
 // score td
 var scoreStyle = "" +
-    "min-width: 50px;" +
-    "height: 50px;"+
-    "vertical-align: middle;";
+    "min-width: "+ 80*scale +"px;" +
+    "height: "+ 80*scale +"px;"+
+    "vertical-align: middle;" +
+    "font-family: sans-serif;" +
+    "font-size: "+ scale +"em;" +
+    "color: white;";
 
 
-function setup(tetrisBoard){
+function setup(tetrisBoard, boardID){
     numPlayers++;
 
-    var canvas = document.getElementById('tetrisCanvas');
+    tetrisBoard.setID(boardID);
+
+    var canvas = document.getElementById("tetrisCanvas");
 
     var board = document.createElement('table');
-    board.className = 'board';
-    board.id = tetrisBoard.getID();
+    board.className = "board";
+    board.id = boardID;
 
     var row, cell;
     for (var i = 0; i < tetrisBoard.constructor.BOARD_HEIGHT+tetrisBoard.constructor.SPWN_HEIGHT; i++){
         row = document.createElement('tr');
         if (i < 4)
-            row.className = 'spawnArea';
+            row.className = "spawnArea";
         for (var j = 0; j < tetrisBoard.constructor.BOARD_WIDTH; j++){
             cell = document.createElement('td');
             cell.className = Shape.shapeTypeString[tetrisBoard.shapeAt(j,i)];
+            cell.className = "tetrisCell";
             row.appendChild(cell);
         }
         board.appendChild(row);
     }
     canvas.appendChild(board);
 
-    var panel = document.createElement('div');
-    panel.className = 'panel';
 
+    var panel = document.createElement('div');
+    panel.className = "panel";
+
+
+    // score box
     var scoreBox = document.createElement('table');
-    scoreBox.className = 'scoreBox';
+    scoreBox.className = "scoreBox";
 
     var scoreBoxRow = document.createElement('tr');
+    var scoreLabel = document.createElement('th');
+    scoreLabel.className = "scoreLabel";
+    scoreLabel.appendChild(document.createTextNode("Score"));
+
+    scoreBoxRow.appendChild(scoreLabel);
+    scoreBox.appendChild(scoreBoxRow);
+
+    scoreBoxRow = document.createElement('tr');
     var score = document.createElement('td');
-    score.className = 'score';
-    score.id = tetrisBoard.getID() + 'Score';
+    score.className = "score";
+    score.id = boardID + "Score";
 
     scoreBoxRow.appendChild(score);
     scoreBox.appendChild(scoreBoxRow);
     panel.appendChild(scoreBox);
+
+
+
+    
+
+
+
+
+
+
+
+
     canvas.appendChild(panel);
 
+    window.addEventListener('keydown', tetrisBoard.respond, false);
+}
 
-    var spawnArea = document.getElementsByClassName('spawnArea');
-    for (i = 0; i < spawnArea.length; i++)
-        spawnArea[i].style.display = 'none';
 
-    //document.getElementById(tetrisBoard.getID()).style.cssText = boardStyle;
-    var boards = document.getElementsByClassName('board');
-    var panels = document.getElementsByClassName('panel');
-    var scoreBoxes = document.getElementsByClassName('scoreBox');
-    var scores = document.getElementsByClassName('score');
+function stylize(){
+
+    var spawnAreas = document.getElementsByClassName("spawnArea");
+    for (var i = 0; i < spawnAreas.length; i++)
+        spawnAreas[i].style.display = "none";
+
+    var boards = document.getElementsByClassName("board");
+    var panels = document.getElementsByClassName("panel");
+    var scoreBoxes = document.getElementsByClassName("scoreBox");
+    var scoreLabels = document.getElementsByClassName("scoreLabel");
+    var scores = document.getElementsByClassName("score");
 
     for (i = 0; i < numPlayers; i++){
         boards[i].style.cssText = boardStyle;
         panels[i].style.cssText = panelStyle;
-        scoreBoxes[i].style.cssText = scoreBoxStyle;
+        scoreBoxes[i].style.cssText = panelTableStyle;
+        scoreBoxes[i].style.top = scoreBoxOffsetFromTop;
+        scoreLabels[i].style.cssText = scoreLabelStyle;
         scores[i].style.cssText = scoreStyle;
     }
 
-    //document.getElementById(tetrisBoard.getID()+'Score').style.cssText = scoreStyle;
-
-    window.addEventListener('keydown', tetrisBoard.respond, false);
+    var tetrisCells = document.getElementsByClassName("tetrisCell");
+    for (i = 0; i < tetrisCells.length; i++)
+        tetrisCells[i].style.cssText = tetrisCellStyle;
 }
 
 

@@ -172,6 +172,7 @@ function Board(){
         nextPiece.setRandomShape();
         newPiece();
 
+        document.getElementById(boardID+'Score').innerHTML = score.toString();
         timer = setInterval(function(){ tick();}, Board.SPEED);
     };
 
