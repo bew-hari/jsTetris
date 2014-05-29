@@ -14,8 +14,8 @@ function Board(){
     var nextPiece = new Shape();
     var heldPiece = new Shape();
 
-    var isPaused = false;
-    var isStarted = false;
+    self.isPaused = false;
+    self.isStarted = false;
 
     var board = new Array(Board.BOARD_WIDTH * (Board.BOARD_HEIGHT+Board.SPWN_HEIGHT));
     var timer;
@@ -32,6 +32,8 @@ function Board(){
     // ID set/get
     self.setID = function(id){ boardID = id;};
     self.getID = function(){ return boardID;};
+
+    self.getCurPiece = function(){ return curPiece;};
 
     // returns the shape at coordinates (x,y)
     self.shapeAt = function(x, y){ return board[y * Board.BOARD_WIDTH + x];};
@@ -89,9 +91,11 @@ function Board(){
 
         if (curPiece.getShape() != Shape.shapeType.NoShape){
             var x, y;
+
             for (i = 0; i < 4; i++){
                 x = curX + curPiece.x(i);
                 y = curY + curPiece.y(i);
+
                 cell = document.getElementById(boardID).rows[Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1 - y].cells[x];
                 cell.className = "tetrisCell";
                 cell.classList.add(Shape.shapeTypeString[curPiece.getShape()]);
@@ -105,11 +109,11 @@ function Board(){
         nextPiece.setRandomShape();
 
         curX = Board.BOARD_WIDTH / 2 - 1;
-        curY = Board.BOARD_HEIGHT + 2;
+        curY = Board.BOARD_HEIGHT + 1;
 
         if (overflow()){
             clearInterval(timer);
-            isStarted = false;
+            self.isStarted = false;
             window.removeEventListener('keydown', self.respond, false);
             alert("Game Over!");
         }
@@ -119,7 +123,7 @@ function Board(){
 
     // moves piece to specified (newX,newY) coordinates
     // returns true if possible, false otherwise
-    var movePiece = function(newPiece, newX, newY){
+    self.movePiece = function(newPiece, newX, newY){
         var x, y;
         for (var i = 0; i < 4; i++) {
             x = newX + newPiece.x(i);
@@ -162,13 +166,13 @@ function Board(){
 
     // advances current piece down one line
     var oneLineDown = function(){
-        if (!movePiece(curPiece, curX, curY - 1)){
+        if (!self.movePiece(curPiece, curX, curY - 1)){
             pieceDropped();
         }
     };
 
-    var dropDown = function(){
-        while(movePiece(curPiece, curX, curY-1)){}
+    self.dropDown = function(){
+        while(self.movePiece(curPiece, curX, curY-1)){}
     };
 
     // updates game board
@@ -178,7 +182,7 @@ function Board(){
 
     // starts board and sets timer
     self.start = function(){
-        isStarted = true;
+        self.isStarted = true;
 
         clearBoard();
         nextPiece.setRandomShape();
@@ -190,12 +194,12 @@ function Board(){
     };
 
     self.pause = function(){
-        if (!isStarted)
+        if (!self.isStarted)
             return;
 
-        isPaused = !isPaused;
+        self.isPaused = !self.isPaused;
 
-        if (isPaused){
+        if (self.isPaused){
             clearInterval(timer);
         }
         else {
@@ -234,6 +238,9 @@ function Board(){
         }
     };
 
+    self.getDispBoard = function(){ return dispBoard;};
+
+
     var drawNext = function(){
         var nextPreviewTable = document.getElementById(boardID + nextHandle + "Preview");
 
@@ -248,11 +255,17 @@ function Board(){
             nextPiece.x(3) + " " + nextPiece.y(3) + "\n");*/
 
         for (var i = 0; i < 4; i++){
+            for (var j = 0; j < 2; j++){
+                nextPreviewTable.rows[i].cells[j].className = "previewCell";
+            }
+        }
+
+        for (i = 0; i < 4; i++){
             x = nextPiece.x(i) - minX;
             y = nextPiece.y(i) - minY;
 
-            cell = nextPreviewTable.rows[x].cells[y];
-            cell.className = "previewCell";
+            cell = nextPreviewTable.rows[3-x].cells[1-y];
+            //cell.className = "previewCell";
             cell.classList.add(Shape.shapeTypeString[nextPiece.getShape()]);
         }
     };
@@ -261,37 +274,37 @@ function Board(){
 
     };
 
-    self.getDispBoard = function(){ return dispBoard;};
-
     self.respond = function(e){
 
         //e.preventDefault();
 
-        if (!isStarted)
+        if (!self.isStarted)
             return;
 
         if (e.keyCode == 80)    // 'P' pressed
             self.pause();
 
-        if (isPaused)
+        if (self.isPaused)
             return;
 
         switch (e.keyCode){
+            case 16:    // shift pressed
+
+                break;
             case 32:    // space pressed
-                dropDown();
+                self.dropDown();
                 break;
             case 37:    // left key pressed
-                movePiece(curPiece, curX - 1, curY);
+                self.movePiece(curPiece, curX - 1, curY);
                 break;
             case 38:    // up key pressed
-                if(!movePiece(curPiece.rotateRight(), curX, curY))
-                    curPiece.rotateLeft();
+                self.movePiece(curPiece.rotateRight(), curX, curY);
                 break;
             case 39:    // right key pressed
-                movePiece(curPiece, curX + 1, curY);
+                self.movePiece(curPiece, curX + 1, curY);
                 break;
             case 40:    // down key pressed
-                movePiece(curPiece, curX, curY - 1);
+                self.movePiece(curPiece, curX, curY - 1);
                 break;
         }
     };
