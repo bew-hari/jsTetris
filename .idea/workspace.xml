@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4c580e3b-3cfb-451c-86ec-f5c482b5c161" name="Default" comment="" />
+    <list default="true" id="4c580e3b-3cfb-451c-86ec-f5c482b5c161" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/competitive.js" afterPath="$PROJECT_DIR$/js/competitive.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/tetris.css" afterPath="$PROJECT_DIR$/css/tetris.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/tetris.js" afterPath="$PROJECT_DIR$/js/tetris.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="jsTetris.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,7 +33,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="44" selection-start="594" selection-end="594" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="375">
+            <state line="13" column="45" selection-start="640" selection-end="640" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="390">
               <folding />
             </state>
           </provider>
@@ -35,7 +42,7 @@
       <file leaf-file-name="tetris.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/tetris.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="36" selection-start="0" selection-end="345" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+            <state line="8" column="53" selection-start="344" selection-end="344" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
               <folding />
             </state>
           </provider>
@@ -44,7 +51,7 @@
       <file leaf-file-name="tetris.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/tetris.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="32" selection-start="168" selection-end="168" vertical-scroll-proportion="-6.3461537" vertical-offset="0" max-vertical-offset="2460">
+            <state line="87" column="28" selection-start="2401" selection-end="2401" vertical-scroll-proportion="-9.230769" vertical-offset="1065" max-vertical-offset="2490">
               <folding />
             </state>
           </provider>
@@ -53,7 +60,7 @@
       <file leaf-file-name="panel.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/panel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="21" selection-start="744" selection-end="748" vertical-scroll-proportion="-8.576923" vertical-offset="242" max-vertical-offset="1305">
+            <state line="9" column="25" selection-start="190" selection-end="190" vertical-scroll-proportion="-5.1923075" vertical-offset="0" max-vertical-offset="1305">
               <folding />
             </state>
           </provider>
@@ -68,19 +75,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="board.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="board.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/board.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="273" column="44" selection-start="7981" selection-end="7981" vertical-scroll-proportion="-15.5" vertical-offset="3692" max-vertical-offset="5175">
+            <state line="256" column="0" selection-start="7322" selection-end="7322" vertical-scroll-proportion="0.19880418" vertical-offset="3707" max-vertical-offset="5175">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="competitive.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="competitive.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/competitive.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="22" selection-start="805" selection-end="805" vertical-scroll-proportion="0.5467626" vertical-offset="100" max-vertical-offset="795">
+            <state line="40" column="19" selection-start="870" selection-end="870" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1215">
               <folding>
                 <element signature="n#!!doc;n#Competitive#0" expanded="false" />
               </folding>
@@ -106,17 +113,25 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/js/panel.js" />
         <option value="$PROJECT_DIR$/js/shape.js" />
+        <option value="$PROJECT_DIR$/js/quickstart.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/board.js" />
         <option value="$PROJECT_DIR$/css/tetris.css" />
+        <option value="$PROJECT_DIR$/js/board.js" />
         <option value="$PROJECT_DIR$/js/tetris.js" />
         <option value="$PROJECT_DIR$/js/competitive.js" />
-        <option value="$PROJECT_DIR$/js/quickstart.js" />
       </list>
     </option>
   </component>
@@ -127,7 +142,7 @@
     <option name="width" value="1400" />
     <option name="height" value="818" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -205,7 +220,11 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -224,6 +243,23 @@
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="sslv3">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="4c580e3b-3cfb-451c-86ec-f5c482b5c161" name="Default" comment="" />
@@ -241,10 +277,10 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.67081606" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32918397" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -310,9 +346,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/quickstart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="28" selection-start="526" selection-end="526" vertical-scroll-proportion="0.0" vertical-offset="10" max-vertical-offset="765">
+          <folding>
+            <element signature="n#!!doc;n#QuickStart#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="44" selection-start="594" selection-end="594" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="375">
+        <state line="13" column="45" selection-start="640" selection-end="640" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="390">
           <folding />
         </state>
       </provider>
@@ -324,49 +369,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/board.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="273" column="44" selection-start="7981" selection-end="7981" vertical-scroll-proportion="-15.5" vertical-offset="3692" max-vertical-offset="5175">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/panel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="21" selection-start="744" selection-end="748" vertical-scroll-proportion="-8.576923" vertical-offset="242" max-vertical-offset="1305">
+        <state line="9" column="25" selection-start="190" selection-end="190" vertical-scroll-proportion="-5.1923075" vertical-offset="0" max-vertical-offset="1305">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/tetris.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="36" selection-start="0" selection-end="345" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+        <state line="8" column="53" selection-start="344" selection-end="344" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/tetris.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="32" selection-start="168" selection-end="168" vertical-scroll-proportion="-6.3461537" vertical-offset="0" max-vertical-offset="2460">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/quickstart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="28" selection-start="526" selection-end="526" vertical-scroll-proportion="0.0" vertical-offset="10" max-vertical-offset="765">
-          <folding>
-            <element signature="n#!!doc;n#QuickStart#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/competitive.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="22" selection-start="805" selection-end="805" vertical-scroll-proportion="0.5467626" vertical-offset="100" max-vertical-offset="795">
+        <state line="40" column="19" selection-start="870" selection-end="870" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1215">
           <folding>
             <element signature="n#!!doc;n#Competitive#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/tetris.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="28" selection-start="2401" selection-end="2401" vertical-scroll-proportion="-9.230769" vertical-offset="1065" max-vertical-offset="2490">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/board.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="256" column="0" selection-start="7322" selection-end="7322" vertical-scroll-proportion="0.19880418" vertical-offset="3707" max-vertical-offset="5175">
+          <folding />
         </state>
       </provider>
     </entry>

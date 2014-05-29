@@ -4,14 +4,14 @@
 
 window.onload = function(){
 
-    var mode = 0;
+    var mode = 1;
 
     var game;
 
     if (mode == 0)
         game = new QuickStart();
     else if (mode == 1)
-        game = new QuickStart();
+        game = new Competitive();
 
     // stylize CSS sheet
     var sheet = stylesheet();
@@ -96,8 +96,10 @@ var tetrisCellStyle = "" +
 
 // div container
 var panelStyle = "" +
-    "float: left;" +
     "display: block;" +
+    "float: left;" +
+    "min-width: " + 250*SCALE + "px;" +
+    "min-height: " + 100*SCALE + "px;" +
     "position: relative;";
 
 // table in panel
