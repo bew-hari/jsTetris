@@ -30,11 +30,48 @@ function Competitive(){
 
         switch (e.keyCode){
             case 16:    // shift pressed
-                if (e.location == 2)
-                    tetrisBoard2.hold();
-                else
+                if (e.location == 1)
                     tetrisBoard1.hold();
+                else
+                    tetrisBoard2.hold();
                 break;
+
+
+
+
+
+            case 9:    // tab pressed
+                e.preventDefault();
+                tetrisBoard1.dropDown();
+                break;
+            case 65:    // 'A' key pressed
+                tetrisBoard1.moveLeft();
+                break;
+            case 87:    // 'W' key pressed
+                tetrisBoard1.moveRotate();
+                break;
+            case 68:    // 'D' key pressed
+                tetrisBoard1.moveRight();
+                break;
+            case 83:    // 'S' key pressed
+                tetrisBoard1.moveDown();
+                break;
+            case 49:    // '1' key pressed
+                if (tetrisBoard1.getScore() >= 3){
+                    tetrisBoard1.modifyScore(-3);
+                    tetrisBoard1.updateScore();
+                    tetrisBoard2.upOneLine();
+                }
+                break;
+            case 50:    // '2' key pressed
+                if (tetrisBoard1.getScore() >= 3){
+                    tetrisBoard1.modifyScore(-3);
+                    tetrisBoard1.updateScore();
+                    tetrisBoard2.dropDown();
+                }
+                break;
+
+
 
 
 
@@ -54,24 +91,19 @@ function Competitive(){
             case 40:    // down key pressed
                 tetrisBoard2.moveDown();
                 break;
-
-
-
-            case 9:    // tab pressed
-                e.preventDefault();
-                tetrisBoard1.dropDown();
+            case 188:   // ',' key pressed
+                if (tetrisBoard2.getScore() >= 3){
+                    tetrisBoard2.modifyScore(-3);
+                    tetrisBoard2.updateScore();
+                    tetrisBoard1.upOneLine();
+                }
                 break;
-            case 65:    // left key pressed
-                tetrisBoard1.moveLeft();
-                break;
-            case 87:    // up key pressed
-                tetrisBoard1.moveRotate();
-                break;
-            case 68:    // right key pressed
-                tetrisBoard1.moveRight();
-                break;
-            case 83:    // down key pressed
-                tetrisBoard1.moveDown();
+            case 190:   // '.' key pressed
+                if (tetrisBoard2.getScore() >= 3){
+                    tetrisBoard2.modifyScore(-3);
+                    tetrisBoard2.updateScore();
+                    tetrisBoard1.dropDown();
+                }
                 break;
         }
     }

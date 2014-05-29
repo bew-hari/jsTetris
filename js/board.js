@@ -33,6 +33,11 @@ function Board(){
     self.getCurPiece = function(){ return curPiece;};
     self.getCurX = function(){ return curX;};
     self.getCurY = function(){ return curY;};
+    self.getScore = function(){ return score;};
+    self.getScoreHandle = function(){ return scoreHandle;};
+
+    self.modifyScore = function(change){ score += change;};
+    self.updateScore = function(){ document.getElementById(boardID+scoreHandle).innerHTML = score.toString();};
 
     // returns the shape at coordinates (x,y)
     self.shapeAt = function(x, y){ return board[y * Board.BOARD_WIDTH + x];};
@@ -70,7 +75,7 @@ function Board(){
 
         if (numLines > 0){
             score += numLines;
-            document.getElementById(boardID+scoreHandle).innerHTML = score.toString();
+            self.updateScore();
             curPiece.setShape(Shape.shapeType.NoShape);
             repaint();
         }
@@ -176,34 +181,6 @@ function Board(){
         }
     };
 
-
-    self.moveLeft = function(){ movePiece(curPiece, curX - 1, curY);};
-    self.moveRight = function(){ movePiece(curPiece, curX + 1, curY);};
-    self.moveDown = function(){ movePiece(curPiece, curX, curY - 1);};
-    self.moveRotate = function(){ movePiece(curPiece.rotateRight(), curX, curY)};
-    self.dropDown = function(){ while(movePiece(curPiece, curX, curY - 1)){}};
-    self.hold = function(){
-        if (isSwapped)
-            return;
-
-        isSwapped = true;
-
-        curX = Board.BOARD_WIDTH / 2 - 1;
-        curY = Board.BOARD_HEIGHT - 1;
-
-        if (heldPiece.getShape() == Shape.shapeType.NoShape){
-            heldPiece.setShape(curPiece.getShape());
-            newPiece();
-        }
-        else {
-            var tempShape = heldPiece.getShape();
-            heldPiece.setShape(curPiece.getShape());
-            curPiece.setShape(tempShape);
-        }
-
-        drawHeld();
-    };
-
     // updates game board
     var tick = function(){
         oneLineDown();
@@ -306,12 +283,14 @@ function Board(){
             }
         }
 
+        var shape = Shape.shapeTypeString[nextPiece.getShape()];
+
         for (i = 0; i < 4; i++){
             x = nextPiece.x(i) - minX;
             y = nextPiece.y(i) - minY;
 
             cell = nextPreviewTable.rows[3-x].cells[1-y];
-            cell.classList.add(Shape.shapeTypeString[nextPiece.getShape()]);
+            cell.classList.add(shape);
         }
     };
 
@@ -330,13 +309,74 @@ function Board(){
             }
         }
 
+        var shape = Shape.shapeTypeString[heldPiece.getShape()];
+
         for (i = 0; i < 4; i++){
             x = heldPiece.x(i) - minX;
             y = heldPiece.y(i) - minY;
 
             cell = heldPreviewTable.rows[3-x].cells[1-y];
-            cell.classList.add(Shape.shapeTypeString[heldPiece.getShape()]);
+            cell.classList.add(shape);
         }
+    };
+
+    self.moveLeft = function(){ movePiece(curPiece, curX - 1, curY);};
+    self.moveRight = function(){ movePiece(curPiece, curX + 1, curY);};
+    self.moveDown = function(){ movePiece(curPiece, curX, curY - 1);};
+    self.moveRotate = function(){ movePiece(curPiece.rotateRight(), curX, curY)};
+    self.dropDown = function(){ while(movePiece(curPiece, curX, curY - 1)){}};
+    self.hold = function(){
+        if (isSwapped)
+            return;
+
+        // disable further holding
+        isSwapped = true;
+
+        curX = Board.BOARD_WIDTH / 2 - 1;
+        curY = Board.BOARD_HEIGHT - 1;
+
+        if (heldPiece.getShape() == Shape.shapeType.NoShape){
+            heldPiece.setShape(curPiece.getShape());
+            newPiece();
+        }
+        else {
+            var tempShape = heldPiece.getShape();
+            heldPiece.setShape(curPiece.getShape());
+            curPiece.setShape(tempShape);
+        }
+
+        drawHeld();
+    };
+
+    self.upOneLine = function(){
+
+        // copy every cell up one line
+        for (var i = Board.BOARD_HEIGHT - 1; i > 0; i--) {
+            for (var j = 0; j < Board.BOARD_WIDTH; j++)
+                board[(i * Board.BOARD_WIDTH) + j] = self.shapeAt(j, i - 1);
+        }
+
+        // randomize gap
+        var rand = Math.floor(Math.random() * Board.BOARD_WIDTH);
+        for (i = 0; i < Board.BOARD_WIDTH; i++){
+            if (i != rand)
+                board[i] = Shape.shapeType.GrayShape;
+            else
+                board[i] = Shape.shapeType.NoShape;
+        }
+
+        /*var x, y;
+        for (i = 0; i < 4; i++) {
+            x = curY + curPiece.x(i);
+            y = curY + curPiece.y(i);
+            if (self.shapeAt(x, y) != Shape.shapeType.NoShape)
+                pieceDropped();
+        }*/
+
+        if (!movePiece(curPiece, curX, curY))
+            movePiece(curPiece, curX, curY + 1);
+
+        repaint();
     };
 }
 
@@ -344,3 +384,21 @@ Board.BOARD_WIDTH = 10;
 Board.BOARD_HEIGHT = 20;
 Board.SPWN_HEIGHT = 4;
 Board.SPEED = 300;
+
+
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// N milliseconds. If `immediate` is passed, trigger the function on the
+// leading edge, instead of the trailing.
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        }, wait);
+        if (immediate && !timeout) func.apply(context, args);
+    };
+};

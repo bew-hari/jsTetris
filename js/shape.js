@@ -108,7 +108,8 @@ Shape.shapeType = {
     TShape: 4,
     SquareShape: 5,
     LShape: 6,
-    MirroredLShape: 7
+    MirroredLShape: 7,
+    GrayShape: 8
  };
 
 // shape type string
@@ -120,7 +121,8 @@ Shape.shapeTypeString = [
     "TShape",
     "SquareShape",
     "LShape",
-    "MirroredLShape"
+    "MirroredLShape",
+    "GrayShape"
 ];
 
 
@@ -134,7 +136,8 @@ Shape.coordsTable = [
     [[-1, 0], [ 0, 0], [ 1, 0], [ 0, 1]],   // T
     [[ 0, 0], [ 1, 0], [ 0, 1], [ 1, 1]],   // Sqr
     [[-1, 0], [ 0, 0], [ 1, 0], [ 1, 1]],   // L
-    [[-1, 1], [-1, 0], [ 0, 0], [ 1, 0]]    // M-L
+    [[-1, 1], [-1, 0], [ 0, 0], [ 1, 0]],   // M-L
+    [[ 0, 0], [ 0, 0], [ 0, 0], [ 0, 0]]    // Gray
 ];
 
 /*Shape.coordsTable = [

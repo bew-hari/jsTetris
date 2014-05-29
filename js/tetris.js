@@ -15,6 +15,7 @@ window.onload = function(){
 
     // stylize CSS sheet
     var sheet = stylesheet();
+
     stylize(sheet);
 };
 
@@ -28,50 +29,59 @@ function stylesheet(){
 
 
 function stylize(sheet){
-
     // style document
-    sheet.addRule("*", documentStyle);
+    addCSSRule(sheet,"*", documentStyle);
 
     // style body
-    sheet.addRule("body", bodyStyle);
+    addCSSRule(sheet,"body", bodyStyle);
 
     // style canvas
-    sheet.addRule("#tetrisCanvas", tetrisCanvasStyle);
-    sheet.addRule(".tetrisContainer", tetrisContainerStyle);
+    addCSSRule(sheet,"#tetrisCanvas", tetrisCanvasStyle);
+    addCSSRule(sheet,".tetrisContainer", tetrisContainerStyle);
 
     // style boards
-    sheet.addRule(".board", boardStyle);
-    sheet.addRule(".spawnArea", "display: none;");
-    sheet.addRule(".boardCell", boardCellStyle);
+    addCSSRule(sheet,".board", boardStyle);
+    addCSSRule(sheet,".spawnArea", "display: none;");
+    addCSSRule(sheet,".boardCell", boardCellStyle);
 
     // style panels
-    sheet.addRule(".panel", panelStyle);
-    sheet.addRule(".panelTable", panelTableStyle);
+    addCSSRule(sheet,".panel", panelStyle);
+    addCSSRule(sheet,".panelTable", panelTableStyle);
 
-    sheet.addRule(".scoreBox", scoreBoxOffsetFromTop);
-    sheet.addRule(".scoreLabel", labelStyle);
-    sheet.addRule(".score", contentStyle);
+    addCSSRule(sheet,".scoreBox", scoreBoxOffsetFromTop);
+    addCSSRule(sheet,".scoreLabel", labelStyle);
+    addCSSRule(sheet,".score", contentStyle);
 
-    sheet.addRule(".nextBox", nextBoxOffsetFromTop);
-    sheet.addRule(".nextLabel", labelStyle);
-    sheet.addRule(".next", contentStyle);
+    addCSSRule(sheet,".nextBox", nextBoxOffsetFromTop);
+    addCSSRule(sheet,".nextLabel", labelStyle);
+    addCSSRule(sheet,".next", contentStyle);
 
-    sheet.addRule(".heldBox", heldBoxOffsetFromTop);
-    sheet.addRule(".heldLabel", labelStyle);
-    sheet.addRule(".held", contentStyle);
+    addCSSRule(sheet,".heldBox", heldBoxOffsetFromTop);
+    addCSSRule(sheet,".heldLabel", labelStyle);
+    addCSSRule(sheet,".held", contentStyle);
 
-    sheet.addRule(".previewTable", previewTableStyle);
-    sheet.addRule(".previewCell", previewCellStyle);
+    addCSSRule(sheet,".previewTable", previewTableStyle);
+    addCSSRule(sheet,".previewCell", previewCellStyle);
 
     // add piece colors
-    sheet.addRule("td."+Shape.shapeTypeString[0], "background-color: #333;");
-    sheet.addRule("td."+Shape.shapeTypeString[1], "background-color: red;");
-    sheet.addRule("td."+Shape.shapeTypeString[2], "background-color: lawngreen;");
-    sheet.addRule("td."+Shape.shapeTypeString[3], "background-color: royalblue;");
-    sheet.addRule("td."+Shape.shapeTypeString[4], "background-color: yellow;");
-    sheet.addRule("td."+Shape.shapeTypeString[5], "background-color: hotpink;");
-    sheet.addRule("td."+Shape.shapeTypeString[6], "background-color: darkorange;");
-    sheet.addRule("td."+Shape.shapeTypeString[7], "background-color: deepskyblue;");
+    addCSSRule(sheet,"td."+Shape.shapeTypeString[0], "background-color: #333;");
+    addCSSRule(sheet,"td."+Shape.shapeTypeString[1], "background-color: red;");
+    addCSSRule(sheet,"td."+Shape.shapeTypeString[2], "background-color: lawngreen;");
+    addCSSRule(sheet,"td."+Shape.shapeTypeString[3], "background-color: royalblue;");
+    addCSSRule(sheet,"td."+Shape.shapeTypeString[4], "background-color: yellow;");
+    addCSSRule(sheet,"td."+Shape.shapeTypeString[5], "background-color: hotpink;");
+    addCSSRule(sheet,"td."+Shape.shapeTypeString[6], "background-color: darkorange;");
+    addCSSRule(sheet,"td."+Shape.shapeTypeString[7], "background-color: deepskyblue;");
+    addCSSRule(sheet,"td."+Shape.shapeTypeString[8], "background-color: darkgray;");
+}
+
+function addCSSRule(sheet, selector, rules, index) {
+    if(sheet.insertRule) {
+        sheet.insertRule(selector + "{" + rules + "}", index);
+    }
+    else {
+        sheet.addRule(selector, rules, index);
+    }
 }
 
 
@@ -80,8 +90,7 @@ var SCALE = 1;
 /* Dynamic CSS Rules */
 var documentStyle = "" +
     "margin: 0;" +
-    "padding: 0;" +
-    "";
+    "padding: 0;";
 
 var bodyStyle = "" +
     "background-color: cornsilk;";
