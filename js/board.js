@@ -14,17 +14,25 @@ function Board(){
     var nextPiece = new Shape();
     var heldPiece = new Shape();
 
-    var isPaused = false;
-    var isStarted = false;
+    self.isPaused = false;
+    self.isStarted = false;
+    var isSwapped = false;
 
     var board = new Array(Board.BOARD_WIDTH * (Board.BOARD_HEIGHT+Board.SPWN_HEIGHT));
     var timer;
 
     var score = 0;
 
-    // ID set/get
-    self.setID = function(id){ boardID = id;};
+    // for display purposes
+    var scoreHandle = "Score";
+    var nextHandle = "Next";
+    var heldHandle = "Held";
+
+    // private member getters
     self.getID = function(){ return boardID;};
+    self.getCurPiece = function(){ return curPiece;};
+    self.getCurX = function(){ return curX;};
+    self.getCurY = function(){ return curY;};
 
     // returns the shape at coordinates (x,y)
     self.shapeAt = function(x, y){ return board[y * Board.BOARD_WIDTH + x];};
@@ -62,7 +70,7 @@ function Board(){
 
         if (numLines > 0){
             score += numLines;
-            document.getElementById(boardID+'Score').innerHTML = score.toString();
+            document.getElementById(boardID+scoreHandle).innerHTML = score.toString();
             curPiece.setShape(Shape.shapeType.NoShape);
             repaint();
         }
@@ -71,36 +79,44 @@ function Board(){
     // paints board by altering table cell classes
     var repaint = function(){
 
+        var cell;
         for (var i = 0; i < Board.BOARD_HEIGHT+Board.SPWN_HEIGHT; i++){
             for (var j = 0; j < Board.BOARD_WIDTH; j++){
-                document.getElementById(boardID).rows[Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1 - i].cells[j]
-                    .className = Shape.shapeTypeString[self.shapeAt(j,i)];
+                cell = document.getElementById(boardID).rows[Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1 - i].cells[j];
+                cell.className = "tetrisCell";
+                cell.classList.add(Shape.shapeTypeString[self.shapeAt(j,i)]);
             }
         }
 
         if (curPiece.getShape() != Shape.shapeType.NoShape){
             var x, y;
+
             for (i = 0; i < 4; i++){
                 x = curX + curPiece.x(i);
                 y = curY + curPiece.y(i);
-                document.getElementById(boardID).rows[Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1 - y].cells[x]
-                    .className = Shape.shapeTypeString[curPiece.getShape()];
+
+                cell = document.getElementById(boardID).rows[Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1 - y].cells[x];
+                cell.className = "tetrisCell";
+                cell.classList.add(Shape.shapeTypeString[curPiece.getShape()]);
             }
         }
     };
 
     // creates new piece and sets current position of new piece
     var newPiece = function () {
+
         curPiece.setShape(nextPiece.getShape());
         nextPiece.setRandomShape();
 
         curX = Board.BOARD_WIDTH / 2 - 1;
-        curY = Board.BOARD_HEIGHT + 2;
+        curY = Board.BOARD_HEIGHT + 1;
+
+        drawNext();
 
         if (overflow()){
             clearInterval(timer);
-            isStarted = false;
-            window.removeEventListener('keydown', self.respond, false);
+            self.isStarted = false;
+            //window.removeEventListener('keydown', self.respond, false);
             alert("Game Over!");
         }
     };
@@ -125,6 +141,7 @@ function Board(){
         return true;
     };
 
+
     // checks if any dropped piece goes above legal height
     var overflow = function(){
         for (var i = 0; i < Board.BOARD_WIDTH; i++){
@@ -137,6 +154,10 @@ function Board(){
 
     // updates board contents
     var pieceDropped = function(){
+
+        // enable holding
+        isSwapped = false;
+
         var x,y;
         for (var i = 0; i < 4; i++) {
             x = curX + curPiece.x(i);
@@ -155,8 +176,32 @@ function Board(){
         }
     };
 
-    var dropDown = function(){
-        while(movePiece(curPiece, curX, curY-1)){}
+
+    self.moveLeft = function(){ movePiece(curPiece, curX - 1, curY);};
+    self.moveRight = function(){ movePiece(curPiece, curX + 1, curY);};
+    self.moveDown = function(){ movePiece(curPiece, curX, curY - 1);};
+    self.moveRotate = function(){ movePiece(curPiece.rotateRight(), curX, curY)};
+    self.dropDown = function(){ while(movePiece(curPiece, curX, curY - 1)){}};
+    self.hold = function(){
+        if (isSwapped)
+            return;
+
+        isSwapped = true;
+
+        curX = Board.BOARD_WIDTH / 2 - 1;
+        curY = Board.BOARD_HEIGHT - 1;
+
+        if (heldPiece.getShape() == Shape.shapeType.NoShape){
+            heldPiece.setShape(curPiece.getShape());
+            newPiece();
+        }
+        else {
+            var tempShape = heldPiece.getShape();
+            heldPiece.setShape(curPiece.getShape());
+            curPiece.setShape(tempShape);
+        }
+
+        drawHeld();
     };
 
     // updates game board
@@ -166,23 +211,26 @@ function Board(){
 
     // starts board and sets timer
     self.start = function(){
-        isStarted = true;
+        self.isStarted = true;
+        isSwapped = false;
 
         clearBoard();
         nextPiece.setRandomShape();
+
         newPiece();
 
-        document.getElementById(boardID+'Score').innerHTML = score.toString();
+        document.getElementById(boardID+scoreHandle).innerHTML = score.toString();
         timer = setInterval(function(){ tick();}, Board.SPEED);
     };
 
+    // pauses board
     self.pause = function(){
-        if (!isStarted)
+        if (!self.isStarted)
             return;
 
-        isPaused = !isPaused;
+        self.isPaused = !self.isPaused;
 
-        if (isPaused){
+        if (self.isPaused){
             clearInterval(timer);
         }
         else {
@@ -190,37 +238,98 @@ function Board(){
         }
     };
 
+    // sets up boardID and canvas DOM elements
+    self.setup = function(id){
+        boardID = id;
 
-    self.respond = function(e){
+        var canvas = document.getElementById("tetrisCanvas");
+        canvas.appendChild(setGameBoard());
+        canvas.appendChild(setPanel());
+    };
 
-        //e.preventDefault();
+    // sets up panel DOM elements
+    var setPanel = function(){
+        var panel = new Panel(boardID);
+        panel.addScoreHandle(scoreHandle);
+        panel.addNextHandle(nextHandle);
+        panel.addHeldHandle(heldHandle);
 
-        if (!isStarted)
-            return;
+        return panel.getPanel();
+    };
 
-        if (e.keyCode == 80)    // 'P' pressed
-            self.pause();
+    // sets up game board DOM elements
+    var setGameBoard = function(){
+        var dispBoard = document.createElement('table');
+        dispBoard.className = "board";
+        dispBoard.id = boardID;
 
-        if (isPaused)
-            return;
+        var row, cell;
+        for (var i = 0; i < Board.BOARD_HEIGHT+Board.SPWN_HEIGHT; i++){
+            row = document.createElement('tr');
+            if (i < 4)
+                row.className = "spawnArea";
+            for (var j = 0; j < Board.BOARD_WIDTH; j++){
+                cell = document.createElement('td');
+                cell.classList.add("tetrisCell");
+                cell.classList.add(Shape.shapeTypeString[0]);
+                row.appendChild(cell);
+            }
+            dispBoard.appendChild(row);
+        }
 
-        switch (e.keyCode){
-            case 32:    // space pressed
-                dropDown();
-                break;
-            case 37:    // left key pressed
-                movePiece(curPiece, curX - 1, curY);
-                break;
-            case 38:    // up key pressed
-                if(!movePiece(curPiece.rotateRight(), curX, curY))
-                    curPiece.rotateLeft();
-                break;
-            case 39:    // right key pressed
-                movePiece(curPiece, curX + 1, curY);
-                break;
-            case 40:    // down key pressed
-                movePiece(curPiece, curX, curY - 1);
-                break;
+        return dispBoard;
+    };
+
+    // draws the next piece
+    var drawNext = function(){
+        var nextPreviewTable = document.getElementById(boardID + nextHandle + "Preview");
+
+        var x,y;
+        var cell;
+        var minX = nextPiece.minX();
+        var minY = nextPiece.minY();
+
+       /* alert(nextPiece.x(0) + " " + nextPiece.y(0) + "\n" +
+            nextPiece.x(1) + " " + nextPiece.y(1) + "\n" +
+            nextPiece.x(2) + " " + nextPiece.y(2) + "\n" +
+            nextPiece.x(3) + " " + nextPiece.y(3) + "\n");*/
+
+        for (var i = 0; i < 4; i++){
+            for (var j = 0; j < 2; j++){
+                nextPreviewTable.rows[i].cells[j].className = "previewCell";
+            }
+        }
+
+        for (i = 0; i < 4; i++){
+            x = nextPiece.x(i) - minX;
+            y = nextPiece.y(i) - minY;
+
+            cell = nextPreviewTable.rows[3-x].cells[1-y];
+            cell.classList.add(Shape.shapeTypeString[nextPiece.getShape()]);
+        }
+    };
+
+    // draws held piece
+    var drawHeld = function(){
+        var heldPreviewTable = document.getElementById(boardID + heldHandle + "Preview");
+
+        var x,y;
+        var cell;
+        var minX = nextPiece.minX();
+        var minY = nextPiece.minY();
+
+        for (var i = 0; i < 4; i++){
+            for (var j = 0; j < 2; j++){
+                heldPreviewTable.rows[i].cells[j].className = "previewCell";
+            }
+        }
+
+        for (i = 0; i < 4; i++){
+            x = heldPiece.x(i) - minX;
+            y = heldPiece.y(i) - minY;
+
+            cell = heldPreviewTable.rows[3-x].cells[1-y];
+            cell.classList.add(Shape.shapeTypeString[heldPiece.getShape()]);
         }
     };
 }

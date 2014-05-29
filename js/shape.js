@@ -18,7 +18,7 @@
 function Shape(){
     var self = this;
     var type = Shape.shapeType.NoShape;
-    var coords = Shape.coordsTable[0];
+    var coords = [[0,0],[0,0],[0,0],[0,0]];
 
     self.printShape = function(){ document.write("Shape: " + self.getShape());};
 
@@ -32,12 +32,12 @@ function Shape(){
         }
     };
     self.setRandomShape = function(){
-        type = Math.floor(Math.random() * 7 + 1);
+        self.setShape(Math.floor(Math.random() * 7 + 1));
     };
 
     // sets the coordinates at location index
-    var setX = function(index, x){ coords[index][0] = x};
-    var setY = function(index, y){ coords[index][1] = y};
+    self.setX = function(index, x){ coords[index][0] = x};
+    self.setY = function(index, y){ coords[index][1] = y};
 
     // returns type of this Shape object
     self.getShape = function(){ return type;};
@@ -65,40 +65,34 @@ function Shape(){
 
     // returns Shape with left rotation
     self.rotateLeft = function(){
-        if (type != Shape.shapeType.SquareShape){
+        if (type == Shape.shapeType.SquareShape)
+            return self;
 
-            var prevCoords = [[0,0],[0,0],[0,0],[0,0]];
-            for (var i = 0; i < 4 ; i++) {
-                for (var j = 0; j < 2; j++) {
-                    prevCoords[i][j] = coords[i][j];
-                }
-            }
+        var newShape = new Shape();
+        newShape.setShape(type);
 
-            for (i = 0; i < 4; i++){
-                setX(i, -prevCoords[i][1]);
-                setY(i, prevCoords[i][0]);
-            }
+        for (var i = 0; i < 4; i++){
+            newShape.setX(i, -coords[i][1]);
+            newShape.setY(i, coords[i][0]);
         }
-        return self;
+
+        return newShape;
     };
 
     // returns Shape with right rotation
     self.rotateRight = function(){
-        if (type != Shape.shapeType.SquareShape){
+        if (type == Shape.shapeType.SquareShape)
+            return self;
 
-            var prevCoords = [[0,0],[0,0],[0,0],[0,0]];
-            for (var i = 0; i < 4 ; i++) {
-                for (var j = 0; j < 2; j++) {
-                    prevCoords[i][j] = coords[i][j];
-                }
-            }
+        var newShape = new Shape();
+        newShape.setShape(type);
 
-            for (i = 0; i < 4; i++){
-                setX(i, prevCoords[i][1]);
-                setY(i, -prevCoords[i][0]);
-            }
+        for (var i = 0; i < 4; i++){
+            newShape.setX(i, coords[i][1]);
+            newShape.setY(i, -coords[i][0]);
         }
-        return self;
+
+        return newShape;
     };
 }
 
@@ -134,13 +128,13 @@ Shape.shapeTypeString = [
 // shape coordinates reference table
 Shape.coordsTable = [
     [[ 0, 0], [ 0, 0], [ 0, 0], [ 0, 0]],
-    [[ 0,-1], [ 0, 0], [-1, 0], [-1, 1]],   // Z
-    [[ 0,-1], [ 0, 0], [ 1, 0], [ 1, 1]],   // S
+    [[ 1, 0], [ 0, 0], [ 0, 1], [-1, 1]],   // Z
+    [[ 1, 1], [ 0, 1], [ 0, 0], [-1, 0]],   // S
     [[-1, 0], [ 0, 0], [ 1, 0], [ 2, 0]],   // Line
     [[-1, 0], [ 0, 0], [ 1, 0], [ 0, 1]],   // T
     [[ 0, 0], [ 1, 0], [ 0, 1], [ 1, 1]],   // Sqr
-    [[-1,-1], [ 0,-1], [ 0, 0], [ 0, 1]],   // L
-    [[ 1,-1], [ 0,-1], [ 0, 0], [ 0, 1]]    // M-L
+    [[-1, 0], [ 0, 0], [ 1, 0], [ 1, 1]],   // L
+    [[-1, 1], [-1, 0], [ 0, 0], [ 1, 0]]    // M-L
 ];
 
 /*Shape.coordsTable = [
