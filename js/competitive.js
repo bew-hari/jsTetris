@@ -17,7 +17,7 @@ function Competitive(){
 
     function respond(e){
 
-        if (!tetrisBoard1.isStarted)
+        if (!tetrisBoard1.isStarted || !tetrisBoard2.isStarted)
             return;
 
         if (e.keyCode == 80){   // 'P' pressed
@@ -25,7 +25,7 @@ function Competitive(){
             tetrisBoard2.pause();
         }
 
-        if (tetrisBoard1.isPaused)
+        if (tetrisBoard1.isPaused || tetrisBoard2.isPaused)
             return;
 
         switch (e.keyCode){

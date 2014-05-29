@@ -35,10 +35,14 @@ function stylize(sheet){
     // style body
     sheet.addRule("body", bodyStyle);
 
+    // style canvas
+    sheet.addRule("#tetrisCanvas", tetrisCanvasStyle);
+    sheet.addRule(".tetrisContainer", tetrisContainerStyle);
+
     // style boards
     sheet.addRule(".board", boardStyle);
     sheet.addRule(".spawnArea", "display: none;");
-    sheet.addRule(".tetrisCell", tetrisCellStyle);
+    sheet.addRule(".boardCell", boardCellStyle);
 
     // style panels
     sheet.addRule(".panel", panelStyle);
@@ -82,6 +86,18 @@ var documentStyle = "" +
 var bodyStyle = "" +
     "background-color: cornsilk;";
 
+var tetrisCanvasStyle = "" +
+    "display: table;" +
+    "margin-left: auto;" +
+    "margin-right: auto;" +
+    "margin-top: " + 30*SCALE +"px;";
+
+var tetrisContainerStyle = "" +
+    "display: table;" +
+    "float: left;" +
+    "margin-left: " + 50*SCALE +"px;" +
+    "margin-right: " + 50*SCALE +"px;";
+
 var boardStyle = "" +
     "float: left;" +
     "display: block;" +
@@ -90,7 +106,7 @@ var boardStyle = "" +
     "border-radius: "+ 10*SCALE +"px;" +
     "background-color: black;";
 
-var tetrisCellStyle = "" +
+var boardCellStyle = "" +
     "width: "+ 30*SCALE +"px;" +
     "height: "+ 30*SCALE +"px;";
 
@@ -98,8 +114,8 @@ var tetrisCellStyle = "" +
 var panelStyle = "" +
     "display: block;" +
     "float: left;" +
-    "min-width: " + 250*SCALE + "px;" +
-    "min-height: " + 100*SCALE + "px;" +
+    "min-width: " + 100*SCALE + "px;" +
+    "min-height: " + 30*SCALE + "px;" +
     "position: relative;";
 
 // table in panel
@@ -147,14 +163,3 @@ var previewCellStyle = "" +
     "width: "+ 10*SCALE +"px;" +
     "height: "+ 10*SCALE +"px;";
 
-
-
-
-/*
-function repaint(board){
-    for (var i = 0; i < board.constructor.BOARD_HEIGHT; i++){
-        for (var j = 0; j < board.constructor.BOARD_WIDTH; j++){
-            document.getElementById('board').rows[i].cells[j].className = Shape.shapeTypeString[tetrisBoard.shapeAt(j,i)];
-        }
-    }
-};*/

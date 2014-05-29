@@ -83,7 +83,7 @@ function Board(){
         for (var i = 0; i < Board.BOARD_HEIGHT+Board.SPWN_HEIGHT; i++){
             for (var j = 0; j < Board.BOARD_WIDTH; j++){
                 cell = document.getElementById(boardID).rows[Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1 - i].cells[j];
-                cell.className = "tetrisCell";
+                cell.className = "boardCell";
                 cell.classList.add(Shape.shapeTypeString[self.shapeAt(j,i)]);
             }
         }
@@ -96,7 +96,7 @@ function Board(){
                 y = curY + curPiece.y(i);
 
                 cell = document.getElementById(boardID).rows[Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1 - y].cells[x];
-                cell.className = "tetrisCell";
+                cell.className = "boardCell";
                 cell.classList.add(Shape.shapeTypeString[curPiece.getShape()]);
             }
         }
@@ -243,8 +243,14 @@ function Board(){
         boardID = id;
 
         var canvas = document.getElementById("tetrisCanvas");
-        canvas.appendChild(setGameBoard());
-        canvas.appendChild(setPanel());
+
+        var container = document.createElement('div');
+        container.className = "tetrisContainer";
+
+        container.appendChild(setGameBoard());
+        container.appendChild(setPanel());
+
+        canvas.appendChild(container);
     };
 
     // sets up panel DOM elements
@@ -270,7 +276,7 @@ function Board(){
                 row.className = "spawnArea";
             for (var j = 0; j < Board.BOARD_WIDTH; j++){
                 cell = document.createElement('td');
-                cell.classList.add("tetrisCell");
+                cell.classList.add("boardCell");
                 cell.classList.add(Shape.shapeTypeString[0]);
                 row.appendChild(cell);
             }
