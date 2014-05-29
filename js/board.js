@@ -16,6 +16,7 @@ function Board(){
 
     self.isPaused = false;
     self.isStarted = false;
+    var isSwapped = false;
 
     var board = new Array(Board.BOARD_WIDTH * (Board.BOARD_HEIGHT+Board.SPWN_HEIGHT));
     var timer;
@@ -23,17 +24,15 @@ function Board(){
     var score = 0;
 
     // for display purposes
-    var panel;
-    var dispBoard;
     var scoreHandle = "Score";
     var nextHandle = "Next";
     var heldHandle = "Held";
 
-    // ID set/get
-    self.setID = function(id){ boardID = id;};
+    // private member getters
     self.getID = function(){ return boardID;};
-
     self.getCurPiece = function(){ return curPiece;};
+    self.getCurX = function(){ return curX;};
+    self.getCurY = function(){ return curY;};
 
     // returns the shape at coordinates (x,y)
     self.shapeAt = function(x, y){ return board[y * Board.BOARD_WIDTH + x];};
@@ -105,25 +104,26 @@ function Board(){
 
     // creates new piece and sets current position of new piece
     var newPiece = function () {
+
         curPiece.setShape(nextPiece.getShape());
         nextPiece.setRandomShape();
 
         curX = Board.BOARD_WIDTH / 2 - 1;
         curY = Board.BOARD_HEIGHT + 1;
 
+        drawNext();
+
         if (overflow()){
             clearInterval(timer);
             self.isStarted = false;
-            window.removeEventListener('keydown', self.respond, false);
+            //window.removeEventListener('keydown', self.respond, false);
             alert("Game Over!");
         }
-
-        drawNext();
     };
 
     // moves piece to specified (newX,newY) coordinates
     // returns true if possible, false otherwise
-    self.movePiece = function(newPiece, newX, newY){
+    var movePiece = function(newPiece, newX, newY){
         var x, y;
         for (var i = 0; i < 4; i++) {
             x = newX + newPiece.x(i);
@@ -141,6 +141,7 @@ function Board(){
         return true;
     };
 
+
     // checks if any dropped piece goes above legal height
     var overflow = function(){
         for (var i = 0; i < Board.BOARD_WIDTH; i++){
@@ -153,6 +154,10 @@ function Board(){
 
     // updates board contents
     var pieceDropped = function(){
+
+        // enable holding
+        isSwapped = false;
+
         var x,y;
         for (var i = 0; i < 4; i++) {
             x = curX + curPiece.x(i);
@@ -166,13 +171,37 @@ function Board(){
 
     // advances current piece down one line
     var oneLineDown = function(){
-        if (!self.movePiece(curPiece, curX, curY - 1)){
+        if (!movePiece(curPiece, curX, curY - 1)){
             pieceDropped();
         }
     };
 
-    self.dropDown = function(){
-        while(self.movePiece(curPiece, curX, curY-1)){}
+
+    self.moveLeft = function(){ movePiece(curPiece, curX - 1, curY);};
+    self.moveRight = function(){ movePiece(curPiece, curX + 1, curY);};
+    self.moveDown = function(){ movePiece(curPiece, curX, curY - 1);};
+    self.moveRotate = function(){ movePiece(curPiece.rotateRight(), curX, curY)};
+    self.dropDown = function(){ while(movePiece(curPiece, curX, curY - 1)){}};
+    self.hold = function(){
+        if (isSwapped)
+            return;
+
+        isSwapped = true;
+
+        curX = Board.BOARD_WIDTH / 2 - 1;
+        curY = Board.BOARD_HEIGHT - 1;
+
+        if (heldPiece.getShape() == Shape.shapeType.NoShape){
+            heldPiece.setShape(curPiece.getShape());
+            newPiece();
+        }
+        else {
+            var tempShape = heldPiece.getShape();
+            heldPiece.setShape(curPiece.getShape());
+            curPiece.setShape(tempShape);
+        }
+
+        drawHeld();
     };
 
     // updates game board
@@ -183,6 +212,7 @@ function Board(){
     // starts board and sets timer
     self.start = function(){
         self.isStarted = true;
+        isSwapped = false;
 
         clearBoard();
         nextPiece.setRandomShape();
@@ -193,6 +223,7 @@ function Board(){
         timer = setInterval(function(){ tick();}, Board.SPEED);
     };
 
+    // pauses board
     self.pause = function(){
         if (!self.isStarted)
             return;
@@ -207,19 +238,28 @@ function Board(){
         }
     };
 
+    // sets up boardID and canvas DOM elements
+    self.setup = function(id){
+        boardID = id;
 
-    self.setPanel = function(){
-        panel = new Panel(boardID);
+        var canvas = document.getElementById("tetrisCanvas");
+        canvas.appendChild(setGameBoard());
+        canvas.appendChild(setPanel());
+    };
+
+    // sets up panel DOM elements
+    var setPanel = function(){
+        var panel = new Panel(boardID);
         panel.addScoreHandle(scoreHandle);
         panel.addNextHandle(nextHandle);
         panel.addHeldHandle(heldHandle);
+
+        return panel.getPanel();
     };
 
-    self.getPanel = function(){ return panel.getPanel();};
-
-
-    self.setDispBoard = function(){
-        dispBoard = document.createElement('table');
+    // sets up game board DOM elements
+    var setGameBoard = function(){
+        var dispBoard = document.createElement('table');
         dispBoard.className = "board";
         dispBoard.id = boardID;
 
@@ -236,15 +276,15 @@ function Board(){
             }
             dispBoard.appendChild(row);
         }
+
+        return dispBoard;
     };
 
-    self.getDispBoard = function(){ return dispBoard;};
-
-
+    // draws the next piece
     var drawNext = function(){
         var nextPreviewTable = document.getElementById(boardID + nextHandle + "Preview");
 
-        var x, y;
+        var x,y;
         var cell;
         var minX = nextPiece.minX();
         var minY = nextPiece.minY();
@@ -265,47 +305,31 @@ function Board(){
             y = nextPiece.y(i) - minY;
 
             cell = nextPreviewTable.rows[3-x].cells[1-y];
-            //cell.className = "previewCell";
             cell.classList.add(Shape.shapeTypeString[nextPiece.getShape()]);
         }
     };
 
+    // draws held piece
     var drawHeld = function(){
+        var heldPreviewTable = document.getElementById(boardID + heldHandle + "Preview");
 
-    };
+        var x,y;
+        var cell;
+        var minX = nextPiece.minX();
+        var minY = nextPiece.minY();
 
-    self.respond = function(e){
+        for (var i = 0; i < 4; i++){
+            for (var j = 0; j < 2; j++){
+                heldPreviewTable.rows[i].cells[j].className = "previewCell";
+            }
+        }
 
-        //e.preventDefault();
+        for (i = 0; i < 4; i++){
+            x = heldPiece.x(i) - minX;
+            y = heldPiece.y(i) - minY;
 
-        if (!self.isStarted)
-            return;
-
-        if (e.keyCode == 80)    // 'P' pressed
-            self.pause();
-
-        if (self.isPaused)
-            return;
-
-        switch (e.keyCode){
-            case 16:    // shift pressed
-
-                break;
-            case 32:    // space pressed
-                self.dropDown();
-                break;
-            case 37:    // left key pressed
-                self.movePiece(curPiece, curX - 1, curY);
-                break;
-            case 38:    // up key pressed
-                self.movePiece(curPiece.rotateRight(), curX, curY);
-                break;
-            case 39:    // right key pressed
-                self.movePiece(curPiece, curX + 1, curY);
-                break;
-            case 40:    // down key pressed
-                self.movePiece(curPiece, curX, curY - 1);
-                break;
+            cell = heldPreviewTable.rows[3-x].cells[1-y];
+            cell.classList.add(Shape.shapeTypeString[heldPiece.getShape()]);
         }
     };
 }
@@ -314,21 +338,3 @@ Board.BOARD_WIDTH = 10;
 Board.BOARD_HEIGHT = 20;
 Board.SPWN_HEIGHT = 4;
 Board.SPEED = 300;
-
-
-
-function setup(tetrisBoard, boardID){
-    numPlayers++;
-
-    tetrisBoard.setID(boardID);
-
-    var canvas = document.getElementById("tetrisCanvas");
-
-    tetrisBoard.setDispBoard();
-    canvas.appendChild(tetrisBoard.getDispBoard());
-
-    tetrisBoard.setPanel();
-    canvas.appendChild(tetrisBoard.getPanel());
-
-    window.addEventListener('keydown', tetrisBoard.respond, false);
-}

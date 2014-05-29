@@ -2,20 +2,13 @@
  * Created by bewharichanwong on 5/25/14 AD.
  */
 
-var numPlayers = 0;
-
 window.onload = function(){
 
-    var tetrisBoard = new Board();
-    setup(tetrisBoard, "board");
+    var game = new QuickStart();
 
     // stylize CSS sheet
     var sheet = stylesheet();
     stylize(sheet);
-
-
-
-    tetrisBoard.start();
 };
 
 
