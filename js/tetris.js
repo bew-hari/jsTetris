@@ -4,7 +4,14 @@
 
 window.onload = function(){
 
-    var game = new QuickStart();
+    var mode = 0;
+
+    var game;
+
+    if (mode == 0)
+        game = new QuickStart();
+    else if (mode == 1)
+        game = new QuickStart();
 
     // stylize CSS sheet
     var sheet = stylesheet();
@@ -21,6 +28,9 @@ function stylesheet(){
 
 
 function stylize(sheet){
+
+    // style document
+    sheet.addRule("*", documentStyle);
 
     // style body
     sheet.addRule("body", bodyStyle);
@@ -49,12 +59,25 @@ function stylize(sheet){
     sheet.addRule(".previewTable", previewTableStyle);
     sheet.addRule(".previewCell", previewCellStyle);
 
+    // add piece colors
+    sheet.addRule("td."+Shape.shapeTypeString[0], "background-color: #333;");
+    sheet.addRule("td."+Shape.shapeTypeString[1], "background-color: red;");
+    sheet.addRule("td."+Shape.shapeTypeString[2], "background-color: lawngreen;");
+    sheet.addRule("td."+Shape.shapeTypeString[3], "background-color: royalblue;");
+    sheet.addRule("td."+Shape.shapeTypeString[4], "background-color: yellow;");
+    sheet.addRule("td."+Shape.shapeTypeString[5], "background-color: hotpink;");
+    sheet.addRule("td."+Shape.shapeTypeString[6], "background-color: darkorange;");
+    sheet.addRule("td."+Shape.shapeTypeString[7], "background-color: deepskyblue;");
 }
 
 
 var SCALE = 1;
 
 /* Dynamic CSS Rules */
+var documentStyle = "" +
+    "margin: 0;" +
+    "padding: 0;" +
+    "";
 
 var bodyStyle = "" +
     "background-color: cornsilk;";

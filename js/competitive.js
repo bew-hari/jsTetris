@@ -2,45 +2,48 @@
  * Created by bewharichanwong on 5/28/14 AD.
  */
 
-
-function QuickStart(){
+function Competitive(){
     var self = this;
 
-    var tetrisBoard = new Board();
-    tetrisBoard.setup("board2");
-    tetrisBoard.start();
+    var tetrisBoard1 = new Board();
+    tetrisBoard1.setup("board");
+    tetrisBoard1.start();
+
+    var tetrisBoard2 = new Board();
+    tetrisBoard2.setup("board2");
+    tetrisBoard2.start();
 
     window.addEventListener('keydown', respond, false);
 
     function respond(e){
 
-        if (!tetrisBoard.isStarted)
+        if (!tetrisBoard1.isStarted)
             return;
 
         if (e.keyCode == 80)    // 'P' pressed
-            tetrisBoard.pause();
+            tetrisBoard1.pause();
 
-        if (tetrisBoard.isPaused)
+        if (tetrisBoard1.isPaused)
             return;
 
         switch (e.keyCode){
             case 16:    // shift pressed
-                tetrisBoard.hold();
+                tetrisBoard1.hold();
                 break;
             case 32:    // space pressed
-                tetrisBoard.dropDown();
+                tetrisBoard1.dropDown();
                 break;
             case 37:    // left key pressed
-                tetrisBoard.moveLeft();
+                tetrisBoard1.moveLeft();
                 break;
             case 38:    // up key pressed
-                tetrisBoard.moveRotate();
+                tetrisBoard1.moveRotate();
                 break;
             case 39:    // right key pressed
-                tetrisBoard.moveRight();
+                tetrisBoard1.moveRight();
                 break;
             case 40:    // down key pressed
-                tetrisBoard.moveDown();
+                tetrisBoard1.moveDown();
                 break;
         }
     }

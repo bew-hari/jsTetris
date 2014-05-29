@@ -1,17 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
-/*body {
-    background-color: cornsilk;
-}
-
-td {
-    width: 30px;
-    height: 30px;
-}*/
-
+/*
 td.NoShape { background-color: #333;}
 td.ZShape { background-color: red;}
 td.SShape { background-color: lawngreen;}
@@ -19,4 +6,4 @@ td.LineShape { background-color: royalblue;}
 td.TShape { background-color: yellow;}
 td.SquareShape { background-color: hotpink;}
 td.LShape { background-color: darkorange;}
-td.MirroredLShape { background-color: deepskyblue;}
+td.MirroredLShape { background-color: deepskyblue;}*/
