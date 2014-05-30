@@ -99,7 +99,7 @@ var tetrisCanvasStyle = "" +
     "display: table;" +
     "margin-left: auto;" +
     "margin-right: auto;" +
-    "margin-top: " + 30*SCALE +"px;";
+    "margin-top: " + 50*SCALE +"px;";
 
 var tetrisContainerStyle = "" +
     "display: table;" +

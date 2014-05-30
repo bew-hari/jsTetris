@@ -17,8 +17,10 @@ function Board(){
     self.isPaused = false;
     self.isStarted = false;
     var isSwapped = false;
+    var isSpedUp = false;
 
     var board = new Array(Board.BOARD_WIDTH * (Board.BOARD_HEIGHT+Board.SPWN_HEIGHT));
+    var curSpeed = Board.BASE_SPEED;
     var timer;
 
     var score = 0;
@@ -197,7 +199,7 @@ function Board(){
         newPiece();
 
         document.getElementById(boardID+scoreHandle).innerHTML = score.toString();
-        timer = setInterval(function(){ tick();}, Board.SPEED);
+        timer = setInterval(function(){ tick();}, curSpeed);
     };
 
     // pauses board
@@ -211,7 +213,7 @@ function Board(){
             clearInterval(timer);
         }
         else {
-            timer = setInterval(function(){ tick();}, Board.SPEED);
+            timer = setInterval(function(){ tick();}, curSpeed);
         }
     };
 
@@ -378,12 +380,38 @@ function Board(){
 
         repaint();
     };
+
+    // speeds up the board by increment for a duration of duration
+    self.speedUp = function(increment, duration){
+        // disable stacking
+        if (isSpedUp)
+            return false;
+
+        curSpeed -= increment;
+
+        // set new interval
+        clearInterval(timer);
+        timer = setInterval(function(){ tick();}, curSpeed);
+        isSpedUp = true;
+
+        setTimeout(function(){ resetSpeed();}, duration);
+
+        return true;
+    };
+
+    var resetSpeed = function(){
+        curSpeed = Board.BASE_SPEED;
+
+        clearInterval(timer);
+        timer = setInterval(function(){ tick();}, curSpeed);
+        isSpedUp = false;
+    };
 }
 
 Board.BOARD_WIDTH = 10;
 Board.BOARD_HEIGHT = 20;
 Board.SPWN_HEIGHT = 4;
-Board.SPEED = 300;
+Board.BASE_SPEED = 300;      // base interval between ticks (in milliseconds)
 
 
 // Returns a function, that, as long as it continues to be invoked, will not

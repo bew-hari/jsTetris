@@ -58,16 +58,24 @@ function Competitive(){
                 break;
             case 49:    // '1' key pressed
                 if (tetrisBoard1.getScore() >= 3){
+                    tetrisBoard2.upOneLine();
                     tetrisBoard1.modifyScore(-3);
                     tetrisBoard1.updateScore();
-                    tetrisBoard2.upOneLine();
                 }
                 break;
             case 50:    // '2' key pressed
                 if (tetrisBoard1.getScore() >= 3){
+                    tetrisBoard2.dropDown();
                     tetrisBoard1.modifyScore(-3);
                     tetrisBoard1.updateScore();
-                    tetrisBoard2.dropDown();
+                }
+                break;
+            case 51:    // '3' key pressed
+                if (tetrisBoard1.getScore() >= 5){
+                    if (tetrisBoard2.speedUp(100, 5000)){
+                        tetrisBoard1.modifyScore(-5);
+                        tetrisBoard1.updateScore();
+                    }
                 }
                 break;
 
@@ -93,16 +101,24 @@ function Competitive(){
                 break;
             case 188:   // ',' key pressed
                 if (tetrisBoard2.getScore() >= 3){
+                    tetrisBoard1.upOneLine();
                     tetrisBoard2.modifyScore(-3);
                     tetrisBoard2.updateScore();
-                    tetrisBoard1.upOneLine();
                 }
                 break;
             case 190:   // '.' key pressed
                 if (tetrisBoard2.getScore() >= 3){
+                    tetrisBoard1.dropDown();
                     tetrisBoard2.modifyScore(-3);
                     tetrisBoard2.updateScore();
-                    tetrisBoard1.dropDown();
+                }
+                break;
+            case 191:    // '/' key pressed
+                if (tetrisBoard2.getScore() >= 5){
+                    if (tetrisBoard1.speedUp(100, 5000)){
+                        tetrisBoard2.modifyScore(-5);
+                        tetrisBoard2.updateScore();
+                    }
                 }
                 break;
         }
