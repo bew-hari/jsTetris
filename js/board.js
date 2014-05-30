@@ -22,6 +22,7 @@ function Board(){
     var board = new Array(Board.BOARD_WIDTH * (Board.BOARD_HEIGHT+Board.SPWN_HEIGHT));
     var curSpeed = Board.BASE_SPEED;
     var timer;
+    var timeOut; var timeOutDuration;
 
     var score = 0;
 
@@ -211,9 +212,13 @@ function Board(){
 
         if (self.isPaused){
             clearInterval(timer);
+            if (isSpedUp)
+                timeOut.pause();
         }
         else {
             timer = setInterval(function(){ tick();}, curSpeed);
+            if (isSpedUp)
+                timeOut.resume();
         }
     };
 
@@ -394,7 +399,8 @@ function Board(){
         timer = setInterval(function(){ tick();}, curSpeed);
         isSpedUp = true;
 
-        setTimeout(function(){ resetSpeed();}, duration);
+        timeOutDuration = duration;
+        timeOut = new TimeOut(function(){ resetSpeed();}, 5000);
 
         return true;
     };
@@ -429,4 +435,20 @@ function debounce(func, wait, immediate) {
         }, wait);
         if (immediate && !timeout) func.apply(context, args);
     };
-};
+}
+
+function TimeOut(callback, delay) {
+    var timerId, start, remaining = delay;
+
+    this.pause = function() {
+        window.clearTimeout(timerId);
+        remaining -= new Date() - start;
+    };
+
+    this.resume = function() {
+        start = new Date();
+        timerId = window.setTimeout(callback, remaining);
+    };
+
+    this.resume();
+}
