@@ -22,7 +22,7 @@ function Board(){
     var board = new Array(Board.BOARD_WIDTH * (Board.BOARD_HEIGHT+Board.SPWN_HEIGHT));
     var curSpeed = Board.BASE_SPEED;
     var timer;
-    var timeOut; var timeOutDuration;
+    var timeOut;
 
     var score = 0;
 
@@ -394,12 +394,14 @@ function Board(){
 
         curSpeed -= increment;
 
+        if (curSpeed < Board.MAX_SPEED)
+            curSpeed = Board.MAX_SPEED;
+
         // set new interval
         clearInterval(timer);
         timer = setInterval(function(){ tick();}, curSpeed);
         isSpedUp = true;
 
-        timeOutDuration = duration;
         timeOut = new TimeOut(function(){ resetSpeed();}, 5000);
 
         return true;
@@ -418,6 +420,7 @@ Board.BOARD_WIDTH = 10;
 Board.BOARD_HEIGHT = 20;
 Board.SPWN_HEIGHT = 4;
 Board.BASE_SPEED = 300;      // base interval between ticks (in milliseconds)
+Board.MAX_SPEED = 100;
 
 
 // Returns a function, that, as long as it continues to be invoked, will not
