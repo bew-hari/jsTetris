@@ -6,15 +6,20 @@ function Cooperative(){
     var self = this;
 
     var tetrisBoard1 = new Board();
-    tetrisBoard1.setup("board", Board.STYLE.ALT);
-    tetrisBoard1.start();
+    tetrisBoard1.setup("board", Board.MODE.COOP, Board.STYLE.ALT);
+
 
     var divider = document.createElement('div');
     divider.className = "coopDivider";
     document.getElementById("tetrisCanvas").appendChild(divider);
 
     var tetrisBoard2 = new Board();
-    tetrisBoard2.setup("board2", Board.STYLE.STD);
+    tetrisBoard2.setup("board2", Board.MODE.COOP, Board.STYLE.STD);
+
+    tetrisBoard1.setOtherBoard(tetrisBoard2);
+    tetrisBoard2.setOtherBoard(tetrisBoard1);
+
+    tetrisBoard1.start();
     tetrisBoard2.start();
 
     window.addEventListener('keydown', respond, false);
@@ -41,6 +46,10 @@ function Cooperative(){
                 break;
 
             case 32:   // space pressed
+                /*var shape = tetrisBoard1.getCurPieceShape();
+                tetrisBoard1.setCurPieceShape(tetrisBoard2.getCurPieceShape());
+                tetrisBoard2.setCurPieceShape(shape);*/
+                tetrisBoard1.swapHeld(tetrisBoard2);
                 break;
 
 

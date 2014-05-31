@@ -7,6 +7,8 @@
 function Board(){
     var self = this;
     var boardID;
+    var otherBoard;
+    var mode;
 
     var curX = 0;
     var curY = 0;
@@ -16,6 +18,7 @@ function Board(){
 
     self.isPaused = false;
     self.isStarted = false;
+    self.heldSwapped = false;
     var isSwapped = false;
     var isSpedUp = false;
 
@@ -33,17 +36,80 @@ function Board(){
 
     // private member getters
     self.getID = function(){ return boardID;};
-    self.getCurPiece = function(){ return curPiece;};
+    self.getMode = function(){ return mode;};
+    self.getHeldPieceShape = function(){ return heldPiece.getShape();};
     self.getCurX = function(){ return curX;};
     self.getCurY = function(){ return curY;};
     self.getScore = function(){ return score;};
+    self.getBoard = function(){ return board;};
     //self.getScoreHandle = function(){ return scoreHandle;};
 
+    self.setHeldPieceShape = function(shape){ heldPiece.setShape(shape); drawHeld();};
     self.modifyScore = function(change){ score += change;};
     self.updateScore = function(){ document.getElementById(boardID+scoreHandle).innerHTML = score.toString();};
 
     // returns the shape at coordinates (x,y)
     self.shapeAt = function(x, y){ return board[y * Board.BOARD_WIDTH + x];};
+
+
+    // sets up boardID and canvas DOM elements
+    self.setup = function(id, gameMode, style){
+        boardID = id;
+        mode = gameMode;
+
+        var canvas = document.getElementById("tetrisCanvas");
+
+        var container = document.createElement('div');
+        container.className = "tetrisContainer";
+
+        if (style == Board.STYLE.STD){
+            container.appendChild(setGameBoard());
+            container.appendChild(setPanel(style));
+        }
+        else if (style == Board.STYLE.ALT){
+            container.appendChild(setPanel(style));
+            container.appendChild(setGameBoard());
+        }
+
+        canvas.appendChild(container);
+    };
+
+    self.setOtherBoard = function(other){
+        otherBoard = other;
+    };
+
+    // sets up panel DOM elements
+    var setPanel = function(style){
+        var panel = new Panel(boardID, style);
+        panel.addScoreHandle(scoreHandle);
+        panel.addNextHandle(nextHandle);
+        panel.addHeldHandle(heldHandle);
+
+        return panel.getPanel();
+    };
+
+    // sets up game board DOM elements
+    var setGameBoard = function(){
+        var dispBoard = document.createElement('table');
+        dispBoard.className = "board";
+        dispBoard.id = boardID;
+
+        var row, cell;
+        for (var i = 0; i < Board.BOARD_HEIGHT+Board.SPWN_HEIGHT; i++){
+            row = document.createElement('tr');
+            if (i < 4)
+                row.className = "spawnArea";
+            for (var j = 0; j < Board.BOARD_WIDTH; j++){
+                cell = document.createElement('td');
+                cell.classList.add("boardCell");
+                cell.classList.add(Shape.shapeTypeString[0]);
+                row.appendChild(cell);
+            }
+            dispBoard.appendChild(row);
+        }
+
+        return dispBoard;
+    };
 
     // clears board
     var clearBoard = function(){
@@ -58,20 +124,44 @@ function Board(){
         for (var i = Board.BOARD_HEIGHT - 1; i >= 0; i--){
             var isFull = true;
 
-            // check if line has gap
-            for (var j = 0; j < Board.BOARD_WIDTH; j++) {
-                if (self.shapeAt(j, i) == Shape.shapeType.NoShape) {
-                    isFull = false;
-                    break;
+            if (mode == Board.MODE.COMP){
+                var j,k;
+                // check if line has gap
+                for (j = 0; j < Board.BOARD_WIDTH; j++) {
+                    if (self.shapeAt(j, i) == Shape.shapeType.NoShape) {
+                        isFull = false;
+                        break;
+                    }
+                }
+
+                // copy everything above full line down one line
+                if (isFull){
+                    numLines++;
+                    for (k = i; k < Board.BOARD_HEIGHT - 1; k++) {
+                        for (j = 0; j < Board.BOARD_WIDTH; j++)
+                            board[(k * Board.BOARD_WIDTH) + j] = self.shapeAt(j, k + 1);
+                    }
                 }
             }
+            else if (mode == Board.MODE.COOP){
+                // check if line has gap
+                for (j = 0; j < Board.BOARD_WIDTH; j++) {
+                    if ((self.shapeAt(j, i) == Shape.shapeType.NoShape)
+                        || (otherBoard.shapeAt(j, i) == Shape.shapeType.NoShape)) {
+                        isFull = false;
+                        break;
+                    }
+                }
 
-            // copy everything above full line down one line
-            if (isFull){
-                numLines++;
-                for (var k = i; k < Board.BOARD_HEIGHT - 1; k++) {
-                    for (j = 0; j < Board.BOARD_WIDTH; j++)
-                    board[(k * Board.BOARD_WIDTH) + j] = self.shapeAt(j, k + 1);
+                // copy everything above full line down one line
+                if (isFull){
+                    numLines++;
+                    for (k = i; k < Board.BOARD_HEIGHT - 1; k++){
+                        for (j = 0; j < Board.BOARD_WIDTH; j++){
+                            board[(k * Board.BOARD_WIDTH) + j] = self.shapeAt(j, k + 1);
+                            otherBoard.getBoard()[(k * Board.BOARD_WIDTH) + j] = otherBoard.shapeAt(j, k + 1);
+                        }
+                    }
                 }
             }
         }
@@ -79,6 +169,12 @@ function Board(){
         if (numLines > 0){
             score += numLines;
             self.updateScore();
+
+            if (mode == Board.MODE.COOP){
+                otherBoard.modifyScore(numLines);
+                otherBoard.updateScore();
+            }
+
             curPiece.setShape(Shape.shapeType.NoShape);
             repaint();
         }
@@ -163,8 +259,9 @@ function Board(){
     // updates board contents
     var pieceDropped = function(){
 
-        // enable holding
+        // enable holding/swapping
         isSwapped = false;
+        self.heldSwapped = false;
 
         var x,y;
         for (var i = 0; i < 4; i++) {
@@ -220,60 +317,6 @@ function Board(){
             if (isSpedUp)
                 timeOut.resume();
         }
-    };
-
-    // sets up boardID and canvas DOM elements
-    self.setup = function(id, style){
-        boardID = id;
-
-        var canvas = document.getElementById("tetrisCanvas");
-
-        var container = document.createElement('div');
-        container.className = "tetrisContainer";
-
-        if (style == Board.STYLE.STD){
-            container.appendChild(setGameBoard());
-            container.appendChild(setPanel(style));
-        }
-        else if (style == Board.STYLE.ALT){
-            container.appendChild(setPanel(style));
-            container.appendChild(setGameBoard());
-        }
-
-        canvas.appendChild(container);
-    };
-
-    // sets up panel DOM elements
-    var setPanel = function(style){
-        var panel = new Panel(boardID, style);
-        panel.addScoreHandle(scoreHandle);
-        panel.addNextHandle(nextHandle);
-        panel.addHeldHandle(heldHandle);
-
-        return panel.getPanel();
-    };
-
-    // sets up game board DOM elements
-    var setGameBoard = function(){
-        var dispBoard = document.createElement('table');
-        dispBoard.className = "board";
-        dispBoard.id = boardID;
-
-        var row, cell;
-        for (var i = 0; i < Board.BOARD_HEIGHT+Board.SPWN_HEIGHT; i++){
-            row = document.createElement('tr');
-            if (i < 4)
-                row.className = "spawnArea";
-            for (var j = 0; j < Board.BOARD_WIDTH; j++){
-                cell = document.createElement('td');
-                cell.classList.add("boardCell");
-                cell.classList.add(Shape.shapeTypeString[0]);
-                row.appendChild(cell);
-            }
-            dispBoard.appendChild(row);
-        }
-
-        return dispBoard;
     };
 
     // draws the next piece
@@ -420,6 +463,21 @@ function Board(){
         timer = setInterval(function(){ tick();}, curSpeed);
         isSpedUp = false;
     };
+
+    self.swapHeld = function(other){
+        if ((mode != Board.MODE.COOP) || (otherBoard.getMode() != Board.MODE.COOP))
+            return;
+
+        if (self.heldSwapped || other.heldSwapped)
+            return;
+
+        var shape = other.getHeldPieceShape();
+        other.setHeldPieceShape(heldPiece.getShape());
+        heldPiece.setShape(shape);
+        drawHeld();
+
+        self.heldSwapped = true;
+    };
 }
 
 Board.BOARD_WIDTH = 10;
@@ -427,6 +485,12 @@ Board.BOARD_HEIGHT = 20;
 Board.SPWN_HEIGHT = 4;
 Board.BASE_SPEED = 300;      // base interval between ticks (in milliseconds)
 Board.MAX_SPEED = 100;
+
+Board.MODE = {
+    COMP: 0,
+    COOP: 1
+};
+
 Board.STYLE = {
     STD: 0,
     ALT: 1

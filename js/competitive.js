@@ -6,15 +6,16 @@ function Competitive(){
     var self = this;
 
     var tetrisBoard1 = new Board();
-    tetrisBoard1.setup("board", Board.STYLE.STD);
-    tetrisBoard1.start();
+    tetrisBoard1.setup("board", Board.MODE.COMP, Board.STYLE.STD);
 
     var divider = document.createElement('div');
     divider.className = "compDivider";
     document.getElementById("tetrisCanvas").appendChild(divider);
 
     var tetrisBoard2 = new Board();
-    tetrisBoard2.setup("board2", Board.STYLE.STD);
+    tetrisBoard2.setup("board2", Board.MODE.COMP, Board.STYLE.STD);
+
+    tetrisBoard1.start();
     tetrisBoard2.start();
 
     window.addEventListener('keydown', respond, false);

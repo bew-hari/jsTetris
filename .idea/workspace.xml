@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c580e3b-3cfb-451c-86ec-f5c482b5c161" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/cooperative.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/board.js" afterPath="$PROJECT_DIR$/js/board.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/competitive.js" afterPath="$PROJECT_DIR$/js/competitive.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/panel.js" afterPath="$PROJECT_DIR$/js/panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/cooperative.js" afterPath="$PROJECT_DIR$/js/cooperative.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/quickstart.js" afterPath="$PROJECT_DIR$/js/quickstart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/tetris.js" afterPath="$PROJECT_DIR$/js/tetris.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="jsTetris.iws" />
@@ -77,19 +74,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="board.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="board.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/board.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="228" column="61" selection-start="6519" selection-end="6519" vertical-scroll-proportion="0.0" vertical-offset="3321" max-vertical-offset="7065">
+            <state line="174" column="26" selection-start="5670" selection-end="5670" vertical-scroll-proportion="0.3497758" vertical-offset="2376" max-vertical-offset="8025">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cooperative.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="cooperative.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/cooperative.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="28" selection-start="290" selection-end="290" vertical-scroll-proportion="0.2589928" vertical-offset="0" max-vertical-offset="1410">
+            <state line="16" column="49" selection-start="445" selection-end="445" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="1545">
               <folding />
             </state>
           </provider>
@@ -98,7 +95,7 @@
       <file leaf-file-name="competitive.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/competitive.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="30" selection-start="292" selection-end="292" vertical-scroll-proportion="-6.923077" vertical-offset="0" max-vertical-offset="2025">
+            <state line="15" column="51" selection-start="446" selection-end="446" vertical-scroll-proportion="-8.653846" vertical-offset="0" max-vertical-offset="2040">
               <folding />
             </state>
           </provider>
@@ -107,7 +104,7 @@
       <file leaf-file-name="quickstart.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/quickstart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="45" selection-start="180" selection-end="180" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
+            <state line="9" column="51" selection-start="186" selection-end="186" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
               <folding>
                 <element signature="n#!!doc;n#QuickStart#0" expanded="false" />
               </folding>
@@ -139,12 +136,12 @@
         <option value="$PROJECT_DIR$/js/shape.js" />
         <option value="$PROJECT_DIR$/css/tetris.css" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/quickstart.js" />
-        <option value="$PROJECT_DIR$/js/board.js" />
         <option value="$PROJECT_DIR$/js/panel.js" />
-        <option value="$PROJECT_DIR$/js/competitive.js" />
-        <option value="$PROJECT_DIR$/js/cooperative.js" />
         <option value="$PROJECT_DIR$/js/tetris.js" />
+        <option value="$PROJECT_DIR$/js/quickstart.js" />
+        <option value="$PROJECT_DIR$/js/cooperative.js" />
+        <option value="$PROJECT_DIR$/js/competitive.js" />
+        <option value="$PROJECT_DIR$/js/board.js" />
       </list>
     </option>
   </component>
@@ -369,46 +366,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="27" selection-start="577" selection-end="577" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="405">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/quickstart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="45" selection-start="180" selection-end="180" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
-          <folding>
-            <element signature="n#!!doc;n#QuickStart#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/shape.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="70" selection-start="480" selection-end="484" vertical-scroll-proportion="41.76923" vertical-offset="1386" max-vertical-offset="2355">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/panel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="31" selection-start="326" selection-end="326" vertical-scroll-proportion="-8.076923" vertical-offset="0" max-vertical-offset="1440">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/competitive.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="30" selection-start="292" selection-end="292" vertical-scroll-proportion="-6.923077" vertical-offset="0" max-vertical-offset="2025">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/board.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="228" column="61" selection-start="6519" selection-end="6519" vertical-scroll-proportion="0.0" vertical-offset="3321" max-vertical-offset="7065">
           <folding />
         </state>
       </provider>
@@ -427,9 +387,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/shape.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="70" selection-start="480" selection-end="484" vertical-scroll-proportion="41.76923" vertical-offset="1386" max-vertical-offset="2355">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="27" selection-start="577" selection-end="577" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="405">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/competitive.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="51" selection-start="446" selection-end="446" vertical-scroll-proportion="-8.653846" vertical-offset="0" max-vertical-offset="2040">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/quickstart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="51" selection-start="186" selection-end="186" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
+          <folding>
+            <element signature="n#!!doc;n#QuickStart#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/cooperative.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="28" selection-start="290" selection-end="290" vertical-scroll-proportion="0.2589928" vertical-offset="0" max-vertical-offset="1410">
+        <state line="16" column="49" selection-start="445" selection-end="445" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="1545">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/board.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="174" column="26" selection-start="5670" selection-end="5670" vertical-scroll-proportion="0.3497758" vertical-offset="2376" max-vertical-offset="8025">
           <folding />
         </state>
       </provider>
