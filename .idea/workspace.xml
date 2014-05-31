@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c580e3b-3cfb-451c-86ec-f5c482b5c161" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/board.js" afterPath="$PROJECT_DIR$/js/board.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/competitive.js" afterPath="$PROJECT_DIR$/js/competitive.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/cooperative.js" afterPath="$PROJECT_DIR$/js/cooperative.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/quickstart.js" afterPath="$PROJECT_DIR$/js/quickstart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="jsTetris.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,19 +70,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="board.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="board.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/board.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="174" column="26" selection-start="5670" selection-end="5670" vertical-scroll-proportion="0.3497758" vertical-offset="2376" max-vertical-offset="8025">
+            <state line="174" column="26" selection-start="5670" selection-end="5670" vertical-scroll-proportion="-9.0" vertical-offset="2376" max-vertical-offset="8025">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cooperative.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="cooperative.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/cooperative.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="49" selection-start="445" selection-end="445" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="1545">
+            <state line="48" column="52" selection-start="1311" selection-end="1311" vertical-scroll-proportion="0.58992803" vertical-offset="310" max-vertical-offset="1500">
               <folding />
             </state>
           </provider>
@@ -139,9 +135,9 @@
         <option value="$PROJECT_DIR$/js/panel.js" />
         <option value="$PROJECT_DIR$/js/tetris.js" />
         <option value="$PROJECT_DIR$/js/quickstart.js" />
-        <option value="$PROJECT_DIR$/js/cooperative.js" />
         <option value="$PROJECT_DIR$/js/competitive.js" />
         <option value="$PROJECT_DIR$/js/board.js" />
+        <option value="$PROJECT_DIR$/js/cooperative.js" />
       </list>
     </option>
   </component>
@@ -417,16 +413,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/cooperative.js">
+    <entry file="file://$PROJECT_DIR$/js/board.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="49" selection-start="445" selection-end="445" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="1545">
+        <state line="174" column="26" selection-start="5670" selection-end="5670" vertical-scroll-proportion="-9.0" vertical-offset="2376" max-vertical-offset="8025">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/board.js">
+    <entry file="file://$PROJECT_DIR$/js/cooperative.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="174" column="26" selection-start="5670" selection-end="5670" vertical-scroll-proportion="0.3497758" vertical-offset="2376" max-vertical-offset="8025">
+        <state line="48" column="52" selection-start="1311" selection-end="1311" vertical-scroll-proportion="0.58992803" vertical-offset="310" max-vertical-offset="1500">
           <folding />
         </state>
       </provider>

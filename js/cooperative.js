@@ -46,9 +46,6 @@ function Cooperative(){
                 break;
 
             case 32:   // space pressed
-                /*var shape = tetrisBoard1.getCurPieceShape();
-                tetrisBoard1.setCurPieceShape(tetrisBoard2.getCurPieceShape());
-                tetrisBoard2.setCurPieceShape(shape);*/
                 tetrisBoard1.swapHeld(tetrisBoard2);
                 break;
 
