@@ -4,7 +4,7 @@
 
 window.onload = function(){
 
-    var mode = 1;
+    var mode = 2;
 
     var game;
 
@@ -12,6 +12,8 @@ window.onload = function(){
         game = new QuickStart();
     else if (mode == 1)
         game = new Competitive();
+    else if (mode == 2)
+        game = new Cooperative();
 
     // stylize CSS sheet
     var sheet = stylesheet();
@@ -44,9 +46,15 @@ function stylize(sheet){
     addCSSRule(sheet,".spawnArea", "display: none;");
     addCSSRule(sheet,".boardCell", boardCellStyle);
 
+    // style divider
+    addCSSRule(sheet,".compDivider", compDividerStyle);
+    addCSSRule(sheet,".coopDivider", coopDividerStyle);
+
     // style panels
     addCSSRule(sheet,".panel", panelStyle);
+    addCSSRule(sheet,".altPanel", altPanelStyle);
     addCSSRule(sheet,".panelTable", panelTableStyle);
+    addCSSRule(sheet,".altPanelTable", altPanelTableStyle);
 
     addCSSRule(sheet,".scoreBox", scoreBoxOffsetFromTop);
     addCSSRule(sheet,".scoreLabel", labelStyle);
@@ -104,8 +112,21 @@ var tetrisCanvasStyle = "" +
 var tetrisContainerStyle = "" +
     "display: table;" +
     "float: left;" +
-    "margin-left: " + 50*SCALE +"px;" +
-    "margin-right: " + 50*SCALE +"px;";
+    //"margin-left: " + 50*SCALE +"px;" +
+    //"margin-right: " + 50*SCALE +"px;" +
+    "";
+
+var compDividerStyle = "" +
+    "display: table;" +
+    "float: left;" +
+    "min-width: " + 100*SCALE +"px;" +
+    "height: " + 50*SCALE +"px;";
+
+var coopDividerStyle = "" +
+    "display: table;" +
+    "float: left;" +
+    "min-width: " + 10*SCALE +"px;" +
+    "height: " + 50*SCALE +"px;";
 
 var boardStyle = "" +
     "float: left;" +
@@ -123,22 +144,43 @@ var boardCellStyle = "" +
 var panelStyle = "" +
     "display: block;" +
     "float: left;" +
-    "min-width: " + 100*SCALE + "px;" +
+    "min-width: " + 90*SCALE + "px;" +
     "min-height: " + 30*SCALE + "px;" +
-    "position: relative;";
+    "position: relative;" +
+    "left: -"+ 10*SCALE +"px;" +
+    "z-index: -1;";
+
+// alt div container
+var altPanelStyle = "" +
+    "display: block;" +
+    "float: left;" +
+    "min-width: " + 90*SCALE + "px;" +
+    "min-height: " + 30*SCALE + "px;" +
+    "position: relative;" +
+    "right: -"+ 5*SCALE +"px;" +
+    "z-index: -1;";
 
 // table in panel
 var panelTableStyle = "" +
     "display: block;" +
     "position: absolute;" +
-    "left: -"+ 10*SCALE +"px;" +
     "border: "+ 5*SCALE +"px solid #888;" +
     "border-collapse: collapse;" +
     "border-radius: "+ 10*SCALE +"px;" +
     "padding-left: "+ 5*SCALE +"px;" +
     "text-align: center;" +
-    "background-color: #333;" +
-    "z-index: -1;";
+    "background-color: #333;";
+
+// alt table in panel
+var altPanelTableStyle = "" +
+    "display: block;" +
+    "position: absolute;" +
+    "border: "+ 5*SCALE +"px solid #888;" +
+    "border-collapse: collapse;" +
+    "border-radius: "+ 10*SCALE +"px;" +
+    "padding-right: "+ 5*SCALE +"px;" +
+    "text-align: center;" +
+    "background-color: #333;";
 
 // offsets from top of canvas
 var scoreBoxOffsetFromTop = "top: " + 20*SCALE +"px;";

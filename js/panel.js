@@ -2,12 +2,17 @@
  * Created by bewharichanwong on 5/28/14 AD.
  */
 
-function Panel(id){
+function Panel(id, style){
     var self = this;
     var boardID = id;
+    var st = style;
 
     var panel = document.createElement('div');
-    panel.className = "panel";
+
+    if (st == Board.STYLE.STD)
+        panel.className = "panel";
+    else if (st == Board.STYLE.ALT)
+        panel.className = "altPanel";
 
     // handle set/get
     self.addScoreHandle = function(handle){
@@ -29,7 +34,11 @@ function Panel(id){
     var addBox = function(typeStr, handle){
 
         var box = document.createElement('table');
-        box.classList.add("panelTable");
+        if (st == Board.STYLE.STD)
+            box.classList.add("panelTable");
+        else if (st == Board.STYLE.ALT)
+            box.classList.add("altPanelTable");
+
         box.classList.add(typeStr + "Box");
 
         var boxRow = document.createElement('tr');
@@ -71,7 +80,7 @@ function Panel(id){
 
         container.appendChild(smallTable);
     };
-};
+}
 
 
 /*

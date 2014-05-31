@@ -37,7 +37,7 @@ function Board(){
     self.getCurX = function(){ return curX;};
     self.getCurY = function(){ return curY;};
     self.getScore = function(){ return score;};
-    self.getScoreHandle = function(){ return scoreHandle;};
+    //self.getScoreHandle = function(){ return scoreHandle;};
 
     self.modifyScore = function(change){ score += change;};
     self.updateScore = function(){ document.getElementById(boardID+scoreHandle).innerHTML = score.toString();};
@@ -223,7 +223,7 @@ function Board(){
     };
 
     // sets up boardID and canvas DOM elements
-    self.setup = function(id){
+    self.setup = function(id, style){
         boardID = id;
 
         var canvas = document.getElementById("tetrisCanvas");
@@ -231,15 +231,21 @@ function Board(){
         var container = document.createElement('div');
         container.className = "tetrisContainer";
 
-        container.appendChild(setGameBoard());
-        container.appendChild(setPanel());
+        if (style == Board.STYLE.STD){
+            container.appendChild(setGameBoard());
+            container.appendChild(setPanel(style));
+        }
+        else if (style == Board.STYLE.ALT){
+            container.appendChild(setPanel(style));
+            container.appendChild(setGameBoard());
+        }
 
         canvas.appendChild(container);
     };
 
     // sets up panel DOM elements
-    var setPanel = function(){
-        var panel = new Panel(boardID);
+    var setPanel = function(style){
+        var panel = new Panel(boardID, style);
         panel.addScoreHandle(scoreHandle);
         panel.addNextHandle(nextHandle);
         panel.addHeldHandle(heldHandle);
@@ -421,7 +427,10 @@ Board.BOARD_HEIGHT = 20;
 Board.SPWN_HEIGHT = 4;
 Board.BASE_SPEED = 300;      // base interval between ticks (in milliseconds)
 Board.MAX_SPEED = 100;
-
+Board.STYLE = {
+    STD: 0,
+    ALT: 1
+};
 
 // Returns a function, that, as long as it continues to be invoked, will not
 // be triggered. The function will be called after it stops being called for

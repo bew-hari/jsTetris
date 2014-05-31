@@ -7,7 +7,7 @@ function QuickStart(){
     var self = this;
 
     var tetrisBoard = new Board();
-    tetrisBoard.setup("board2");
+    tetrisBoard.setup("board", Board.STYLE.STD);
     tetrisBoard.start();
 
     window.addEventListener('keydown', respond, false);

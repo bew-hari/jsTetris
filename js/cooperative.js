@@ -1,16 +1,16 @@
 /**
- * Created by bewharichanwong on 5/28/14 AD.
+ * Created by bewharichanwong on 5/30/14 AD.
  */
 
-function Competitive(){
+function Cooperative(){
     var self = this;
 
     var tetrisBoard1 = new Board();
-    tetrisBoard1.setup("board", Board.STYLE.STD);
+    tetrisBoard1.setup("board", Board.STYLE.ALT);
     tetrisBoard1.start();
 
     var divider = document.createElement('div');
-    divider.className = "compDivider";
+    divider.className = "coopDivider";
     document.getElementById("tetrisCanvas").appendChild(divider);
 
     var tetrisBoard2 = new Board();
@@ -40,6 +40,9 @@ function Competitive(){
                     tetrisBoard2.hold();
                 break;
 
+            case 32:   // space pressed
+                break;
+
 
 
 
@@ -59,28 +62,6 @@ function Competitive(){
                 break;
             case 83:    // 'S' key pressed
                 tetrisBoard1.moveDown();
-                break;
-            case 49:    // '1' key pressed
-                if (tetrisBoard1.getScore() >= 3){
-                    tetrisBoard2.upOneLine();
-                    tetrisBoard1.modifyScore(-3);
-                    tetrisBoard1.updateScore();
-                }
-                break;
-            case 50:    // '2' key pressed
-                if (tetrisBoard1.getScore() >= 3){
-                    tetrisBoard2.dropDown();
-                    tetrisBoard1.modifyScore(-3);
-                    tetrisBoard1.updateScore();
-                }
-                break;
-            case 51:    // '3' key pressed
-                if (tetrisBoard1.getScore() >= 5){
-                    if (tetrisBoard2.speedUp(100, 5000)){
-                        tetrisBoard1.modifyScore(-5);
-                        tetrisBoard1.updateScore();
-                    }
-                }
                 break;
 
 
@@ -102,28 +83,6 @@ function Competitive(){
                 break;
             case 40:    // down key pressed
                 tetrisBoard2.moveDown();
-                break;
-            case 188:   // ',' key pressed
-                if (tetrisBoard2.getScore() >= 3){
-                    tetrisBoard1.upOneLine();
-                    tetrisBoard2.modifyScore(-3);
-                    tetrisBoard2.updateScore();
-                }
-                break;
-            case 190:   // '.' key pressed
-                if (tetrisBoard2.getScore() >= 3){
-                    tetrisBoard1.dropDown();
-                    tetrisBoard2.modifyScore(-3);
-                    tetrisBoard2.updateScore();
-                }
-                break;
-            case 191:    // '/' key pressed
-                if (tetrisBoard2.getScore() >= 5){
-                    if (tetrisBoard1.speedUp(100, 5000)){
-                        tetrisBoard2.modifyScore(-5);
-                        tetrisBoard2.updateScore();
-                    }
-                }
                 break;
         }
     }

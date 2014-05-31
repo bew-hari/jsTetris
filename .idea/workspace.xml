@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c580e3b-3cfb-451c-86ec-f5c482b5c161" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/cooperative.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/board.js" afterPath="$PROJECT_DIR$/js/board.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/competitive.js" afterPath="$PROJECT_DIR$/js/competitive.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/panel.js" afterPath="$PROJECT_DIR$/js/panel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/quickstart.js" afterPath="$PROJECT_DIR$/js/quickstart.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/tetris.js" afterPath="$PROJECT_DIR$/js/tetris.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="jsTetris.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +35,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="45" selection-start="640" selection-end="640" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="390">
+            <state line="12" column="27" selection-start="577" selection-end="577" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="405">
               <folding />
             </state>
           </provider>
@@ -47,7 +53,7 @@
       <file leaf-file-name="tetris.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/tetris.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="33" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2700">
+            <state line="8" column="13" selection-start="115" selection-end="115" vertical-scroll-proportion="-4.6153846" vertical-offset="0" max-vertical-offset="3330">
               <folding />
             </state>
           </provider>
@@ -56,7 +62,7 @@
       <file leaf-file-name="panel.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/panel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="32" selection-start="1099" selection-end="1099" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1305">
+            <state line="14" column="31" selection-start="326" selection-end="326" vertical-scroll-proportion="-8.076923" vertical-offset="0" max-vertical-offset="1440">
               <folding />
             </state>
           </provider>
@@ -65,16 +71,25 @@
       <file leaf-file-name="shape.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/shape.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="16" selection-start="2817" selection-end="2817" vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="2355">
+            <state line="22" column="70" selection-start="480" selection-end="484" vertical-scroll-proportion="41.76923" vertical-offset="1386" max-vertical-offset="2355">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="board.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="board.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/board.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="386" column="6" selection-start="11380" selection-end="11380" vertical-scroll-proportion="0.2877698" vertical-offset="5590" max-vertical-offset="6930">
+            <state line="228" column="61" selection-start="6519" selection-end="6519" vertical-scroll-proportion="0.0" vertical-offset="3321" max-vertical-offset="7065">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cooperative.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/cooperative.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="28" selection-start="290" selection-end="290" vertical-scroll-proportion="0.2589928" vertical-offset="0" max-vertical-offset="1410">
               <folding />
             </state>
           </provider>
@@ -83,7 +98,7 @@
       <file leaf-file-name="competitive.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/competitive.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="117" column="46" selection-start="3630" selection-end="3630" vertical-scroll-proportion="0.0" vertical-offset="1270" max-vertical-offset="1965">
+            <state line="12" column="30" selection-start="292" selection-end="292" vertical-scroll-proportion="-6.923077" vertical-offset="0" max-vertical-offset="2025">
               <folding />
             </state>
           </provider>
@@ -92,7 +107,7 @@
       <file leaf-file-name="quickstart.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/quickstart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="0" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0" vertical-offset="70" max-vertical-offset="765">
+            <state line="9" column="45" selection-start="180" selection-end="180" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
               <folding>
                 <element signature="n#!!doc;n#QuickStart#0" expanded="false" />
               </folding>
@@ -115,17 +130,21 @@
       <MyDateState />
     </option>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.txt" root0="SKIP_INSPECTION" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/js/panel.js" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/quickstart.js" />
         <option value="$PROJECT_DIR$/js/shape.js" />
         <option value="$PROJECT_DIR$/css/tetris.css" />
-        <option value="$PROJECT_DIR$/js/tetris.js" />
-        <option value="$PROJECT_DIR$/js/competitive.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/quickstart.js" />
         <option value="$PROJECT_DIR$/js/board.js" />
+        <option value="$PROJECT_DIR$/js/panel.js" />
+        <option value="$PROJECT_DIR$/js/competitive.js" />
+        <option value="$PROJECT_DIR$/js/cooperative.js" />
+        <option value="$PROJECT_DIR$/js/tetris.js" />
       </list>
     </option>
   </component>
@@ -276,6 +295,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32918397" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32918397" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -298,13 +318,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/competitive.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="35" selection-start="231" selection-end="231" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="1725">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/quickstart.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="0" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="765">
@@ -356,25 +369,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="27" selection-start="577" selection-end="577" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="405">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/quickstart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0" vertical-offset="70" max-vertical-offset="765">
+        <state line="9" column="45" selection-start="180" selection-end="180" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
           <folding>
             <element signature="n#!!doc;n#QuickStart#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/js/shape.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="45" selection-start="640" selection-end="640" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="390">
+        <state line="22" column="70" selection-start="480" selection-end="484" vertical-scroll-proportion="41.76923" vertical-offset="1386" max-vertical-offset="2355">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/shape.js">
+    <entry file="file://$PROJECT_DIR$/js/panel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="16" selection-start="2817" selection-end="2817" vertical-scroll-proportion="0.0" vertical-offset="1290" max-vertical-offset="2355">
+        <state line="14" column="31" selection-start="326" selection-end="326" vertical-scroll-proportion="-8.076923" vertical-offset="0" max-vertical-offset="1440">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/competitive.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="30" selection-start="292" selection-end="292" vertical-scroll-proportion="-6.923077" vertical-offset="0" max-vertical-offset="2025">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/board.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="228" column="61" selection-start="6519" selection-end="6519" vertical-scroll-proportion="0.0" vertical-offset="3321" max-vertical-offset="7065">
           <folding />
         </state>
       </provider>
@@ -386,30 +420,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/panel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="32" selection-start="1099" selection-end="1099" vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="1305">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/tetris.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="33" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2700">
+        <state line="8" column="13" selection-start="115" selection-end="115" vertical-scroll-proportion="-4.6153846" vertical-offset="0" max-vertical-offset="3330">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/competitive.js">
+    <entry file="file://$PROJECT_DIR$/js/cooperative.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="46" selection-start="3630" selection-end="3630" vertical-scroll-proportion="0.0" vertical-offset="1270" max-vertical-offset="1965">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/board.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="386" column="6" selection-start="11380" selection-end="11380" vertical-scroll-proportion="0.2877698" vertical-offset="5590" max-vertical-offset="6930">
+        <state line="12" column="28" selection-start="290" selection-end="290" vertical-scroll-proportion="0.2589928" vertical-offset="0" max-vertical-offset="1410">
           <folding />
         </state>
       </provider>
