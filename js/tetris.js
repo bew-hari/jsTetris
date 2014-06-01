@@ -4,7 +4,7 @@
 
 window.onload = function(){
 
-    var mode = 2;
+    var mode = 1;
 
     var game;
 

@@ -401,6 +401,7 @@ function Board(){
             curPiece.setShape(tempShape);
         }
 
+        repaint();
         drawHeld();
     };
 
@@ -483,7 +484,7 @@ function Board(){
 Board.BOARD_WIDTH = 10;
 Board.BOARD_HEIGHT = 20;
 Board.SPWN_HEIGHT = 4;
-Board.BASE_SPEED = 300;      // base interval between ticks (in milliseconds)
+Board.BASE_SPEED = 500;      // base interval between ticks (in milliseconds)
 Board.MAX_SPEED = 100;
 
 Board.MODE = {
