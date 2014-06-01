@@ -15,10 +15,14 @@ function Competitive(){
     var tetrisBoard2 = new Board();
     tetrisBoard2.setup("board2", Board.MODE.COMP, Board.STYLE.STD);
 
+    tetrisBoard1.setOtherBoard(tetrisBoard2);
+    tetrisBoard2.setOtherBoard(tetrisBoard1);
+
     tetrisBoard1.start();
     tetrisBoard2.start();
 
     window.addEventListener('keydown', respond, false);
+
 
     function respond(e){
 

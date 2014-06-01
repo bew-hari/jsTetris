@@ -42,8 +42,8 @@ function Board(){
     self.getCurY = function(){ return curY;};
     self.getScore = function(){ return score;};
     self.getBoard = function(){ return board;};
-    //self.getScoreHandle = function(){ return scoreHandle;};
 
+    // modifiers
     self.setHeldPieceShape = function(shape){ heldPiece.setShape(shape); drawHeld();};
     self.modifyScore = function(change){ score += change;};
     self.updateScore = function(){ document.getElementById(boardID+scoreHandle).innerHTML = score.toString();};
@@ -124,26 +124,7 @@ function Board(){
         for (var i = Board.BOARD_HEIGHT - 1; i >= 0; i--){
             var isFull = true;
 
-            if (mode == Board.MODE.COMP){
-                var j,k;
-                // check if line has gap
-                for (j = 0; j < Board.BOARD_WIDTH; j++) {
-                    if (self.shapeAt(j, i) == Shape.shapeType.NoShape) {
-                        isFull = false;
-                        break;
-                    }
-                }
-
-                // copy everything above full line down one line
-                if (isFull){
-                    numLines++;
-                    for (k = i; k < Board.BOARD_HEIGHT - 1; k++) {
-                        for (j = 0; j < Board.BOARD_WIDTH; j++)
-                            board[(k * Board.BOARD_WIDTH) + j] = self.shapeAt(j, k + 1);
-                    }
-                }
-            }
-            else if (mode == Board.MODE.COOP){
+            if (mode == Board.MODE.COOP){
                 // check if line has gap
                 for (j = 0; j < Board.BOARD_WIDTH; j++) {
                     if ((self.shapeAt(j, i) == Shape.shapeType.NoShape)
@@ -161,6 +142,25 @@ function Board(){
                             board[(k * Board.BOARD_WIDTH) + j] = self.shapeAt(j, k + 1);
                             otherBoard.getBoard()[(k * Board.BOARD_WIDTH) + j] = otherBoard.shapeAt(j, k + 1);
                         }
+                    }
+                }
+            }
+            else {      // if (mode == Board.MODE.COMP)
+                var j,k;
+                // check if line has gap
+                for (j = 0; j < Board.BOARD_WIDTH; j++) {
+                    if (self.shapeAt(j, i) == Shape.shapeType.NoShape) {
+                        isFull = false;
+                        break;
+                    }
+                }
+
+                // copy everything above full line down one line
+                if (isFull){
+                    numLines++;
+                    for (k = i; k < Board.BOARD_HEIGHT - 1; k++) {
+                        for (j = 0; j < Board.BOARD_WIDTH; j++)
+                            board[(k * Board.BOARD_WIDTH) + j] = self.shapeAt(j, k + 1);
                     }
                 }
             }
@@ -218,10 +218,12 @@ function Board(){
         drawNext();
 
         if (overflow()){
-            clearInterval(timer);
-            self.isStarted = false;
-            //window.removeEventListener('keydown', self.respond, false);
-            alert("Game Over!");
+            self.lose();
+
+            if (mode == Board.MODE.COMP)
+                otherBoard.win();
+            else if (mode == Board.MODE.COOP)
+                otherBoard.lose();
         }
     };
 
@@ -244,7 +246,6 @@ function Board(){
         repaint();
         return true;
     };
-
 
     // checks if any dropped piece goes above legal height
     var overflow = function(){
@@ -317,6 +318,24 @@ function Board(){
             if (isSpedUp)
                 timeOut.resume();
         }
+    };
+
+    self.win = function(){
+        clearInterval(timer);
+        if (isSpedUp)
+            timeOut.pause();
+        self.isStarted = false;
+        // do win graphics here
+    };
+
+    // stops board timer
+    self.lose = function(){
+        clearInterval(timer);
+        if (isSpedUp)
+            timeOut.pause();
+        self.isStarted = false;
+        //alert("Game Over!");
+        // do lose graphics here
     };
 
     // draws the next piece
@@ -488,8 +507,9 @@ Board.BASE_SPEED = 500;      // base interval between ticks (in milliseconds)
 Board.MAX_SPEED = 100;
 
 Board.MODE = {
-    COMP: 0,
-    COOP: 1
+    QKST: 0,
+    COMP: 1,
+    COOP: 2
 };
 
 Board.STYLE = {
