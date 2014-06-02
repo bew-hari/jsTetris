@@ -80,7 +80,7 @@ function stylize(sheet){
     addCSSRule(sheet,"td."+Shape.shapeTypeString[5], "background-color: hotpink;");
     addCSSRule(sheet,"td."+Shape.shapeTypeString[6], "background-color: darkorange;");
     addCSSRule(sheet,"td."+Shape.shapeTypeString[7], "background-color: deepskyblue;");
-    addCSSRule(sheet,"td."+Shape.shapeTypeString[8], "background-color: darkgray;");
+    addCSSRule(sheet,"td."+Shape.shapeTypeString[8], "background-color: gray;");
 }
 
 function addCSSRule(sheet, selector, rules, index) {

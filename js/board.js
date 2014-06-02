@@ -338,11 +338,20 @@ function Board(){
         // do win graphics here
     };
 
-    // stops board timer
     self.drawLose = function(){
-
-        // do lose graphics here
+        for (var i = 0; i < Board.BOARD_HEIGHT; i++){
+            for (var j = 0; j < Board.BOARD_WIDTH; j++){
+                board[i * Board.BOARD_WIDTH + j] = Shape.shapeType.GrayShape;
+            }
+        }
+        repaint();
     };
+
+    /*var drawCell = function(x,y,shape){
+        var cell = document.getElementById(boardID).rows[Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1 - y].cells[x];
+        cell.className = "boardCell";
+        cell.classList.add(Shape.shapeTypeString[shape]);
+    };*/
 
     // draws the next piece
     var drawNext = function(){
@@ -554,4 +563,11 @@ function TimeOut(callback, delay) {
     };
 
     this.resume();
+}
+
+function sleep(milliseconds) {
+    var start = new Date().getTime();
+    while ((new Date().getTime() - start) <= milliseconds){
+
+    }
 }
