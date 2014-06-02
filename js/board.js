@@ -218,12 +218,18 @@ function Board(){
         drawNext();
 
         if (overflow()){
-            self.lose();
+            self.stop();
 
-            if (mode == Board.MODE.COMP)
-                otherBoard.win();
-            else if (mode == Board.MODE.COOP)
-                otherBoard.lose();
+            if (mode == Board.MODE.COMP){
+                otherBoard.stop();
+                self.drawLose();
+                otherBoard.drawWin();
+            }
+            else if (mode == Board.MODE.COOP){
+                otherBoard.stop();
+                self.drawLose();
+                otherBoard.drawLose();
+            }
         }
     };
 
@@ -320,21 +326,21 @@ function Board(){
         }
     };
 
-    self.win = function(){
+    self.stop = function(){
         clearInterval(timer);
         if (isSpedUp)
             timeOut.pause();
         self.isStarted = false;
+    };
+
+    self.drawWin = function(){
+
         // do win graphics here
     };
 
     // stops board timer
-    self.lose = function(){
-        clearInterval(timer);
-        if (isSpedUp)
-            timeOut.pause();
-        self.isStarted = false;
-        //alert("Game Over!");
+    self.drawLose = function(){
+
         // do lose graphics here
     };
 
