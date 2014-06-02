@@ -379,8 +379,7 @@ function Board(){
             x = nextPiece.x(i) - minX;
             y = nextPiece.y(i) - minY;
 
-            cell = nextPreviewTable.rows[3-x].cells[1-y];
-            cell.classList.add(shape);
+            nextPreviewTable.rows[3-x].cells[1-y].classList.add(shape);
         }
     };
 
@@ -389,24 +388,21 @@ function Board(){
         var heldPreviewTable = document.getElementById(boardID + heldHandle + "Preview");
 
         var x,y;
-        var cell;
         var minX = nextPiece.minX();
         var minY = nextPiece.minY();
 
-        for (var i = 0; i < 4; i++){
-            for (var j = 0; j < 2; j++){
-                heldPreviewTable.rows[i].cells[j].className = "previewCell";
+        for (var m = 0; m < 4; m++){
+            for (var n = 0; n < 2; n++){
+                heldPreviewTable.rows[m].cells[n].className = "previewCell";
             }
         }
 
         var shape = Shape.shapeTypeString[heldPiece.getShape()];
 
-        for (i = 0; i < 4; i++){
-            x = heldPiece.x(i) - minX;
-            y = heldPiece.y(i) - minY;
-
-            cell = heldPreviewTable.rows[3-x].cells[1-y];
-            cell.classList.add(shape);
+        for (var p = 0; p < 4; p++){
+            x = heldPiece.x(p) + 1;
+            y = heldPiece.y(p) - minY;
+            heldPreviewTable.rows[3-x].cells[1-y].classList.add(shape);
         }
     };
 
@@ -414,10 +410,27 @@ function Board(){
     self.moveRight = function(){ movePiece(curPiece, curX + 1, curY);};
     self.moveDown = function(){ movePiece(curPiece, curX, curY - 1);};
     self.moveRotate = function(){ movePiece(curPiece.rotateRight(), curX, curY)};
-    self.dropDown = function(){ while(movePiece(curPiece, curX, curY - 1)){}};
+    self.dropDown = function(){
+
+        var legalDown = 0;
+        var legal = true;
+        var x,y;
+
+        while(legal){
+            for (var i = 0; i < 4; i++){
+                x = curX + curPiece.x(i);
+                y = curY + curPiece.y(i);
+                if (self.shapeAt(x,y - legalDown) != Shape.shapeType.NoShape)
+                    legal = false;
+            }
+            legalDown++;
+        }
+
+        movePiece(curPiece, curX, curY-legalDown+2);
+    };
     self.hold = function(){
-        if (isSwapped)
-            return;
+        //if (isSwapped)
+        //    return;
 
         // disable further holding
         isSwapped = true;
