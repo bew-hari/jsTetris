@@ -94,6 +94,11 @@ function Board(){
         dispBoard.className = "board";
         dispBoard.id = boardID;
 
+        var overlay = document.createElement('div');
+        overlay.className = "boardOverlay";
+        overlay.classList.add("hide");
+        dispBoard.appendChild(overlay);
+
         var row, cell;
         for (var i = 0; i < Board.BOARD_HEIGHT+Board.SPWN_HEIGHT; i++){
             row = document.createElement('tr');
@@ -219,14 +224,13 @@ function Board(){
 
         if (overflow()){
             self.stop();
+            otherBoard.stop();
 
             if (mode == Board.MODE.COMP){
-                otherBoard.stop();
                 self.drawLose();
                 otherBoard.drawWin();
             }
             else if (mode == Board.MODE.COOP){
-                otherBoard.stop();
                 self.drawLose();
                 otherBoard.drawLose();
             }
@@ -314,15 +318,24 @@ function Board(){
 
         self.isPaused = !self.isPaused;
 
+        var overlay, i;
         if (self.isPaused){
             clearInterval(timer);
             if (isSpedUp)
                 timeOut.pause();
+
+            overlay = document.getElementsByClassName("boardOverlay");
+            for (i = 0; i < overlay.length; i++)
+                overlay[i].classList.remove("hide");
         }
         else {
             timer = setInterval(function(){ tick();}, curSpeed);
             if (isSpedUp)
                 timeOut.resume();
+
+            overlay = document.getElementsByClassName("boardOverlay");
+            for (i = 0; i < overlay.length; i++)
+                overlay[i].classList.add("hide");
         }
     };
 
@@ -339,6 +352,7 @@ function Board(){
     };
 
     self.drawLose = function(){
+        curPiece.setShape(Shape.shapeType.NoShape);
         for (var i = 0; i < Board.BOARD_HEIGHT; i++){
             for (var j = 0; j < Board.BOARD_WIDTH; j++){
                 board[i * Board.BOARD_WIDTH + j] = Shape.shapeType.GrayShape;
@@ -346,12 +360,6 @@ function Board(){
         }
         repaint();
     };
-
-    /*var drawCell = function(x,y,shape){
-        var cell = document.getElementById(boardID).rows[Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1 - y].cells[x];
-        cell.className = "boardCell";
-        cell.classList.add(Shape.shapeTypeString[shape]);
-    };*/
 
     // draws the next piece
     var drawNext = function(){
@@ -429,8 +437,8 @@ function Board(){
         movePiece(curPiece, curX, curY-legalDown+2);
     };
     self.hold = function(){
-        //if (isSwapped)
-        //    return;
+        if (isSwapped)
+            return;
 
         // disable further holding
         isSwapped = true;

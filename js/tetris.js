@@ -4,7 +4,7 @@
 
 window.onload = function(){
 
-    var mode = 0;
+    var mode = 2;
 
     var game;
 
@@ -45,6 +45,8 @@ function stylize(sheet){
     addCSSRule(sheet,".board", boardStyle);
     addCSSRule(sheet,".spawnArea", "display: none;");
     addCSSRule(sheet,".boardCell", boardCellStyle);
+    addCSSRule(sheet,".boardOverlay", boardOverlayStyle);
+    addCSSRule(sheet,".hide", hideStyle);
 
     // style divider
     addCSSRule(sheet,".compDivider", compDividerStyle);
@@ -103,6 +105,15 @@ var documentStyle = "" +
 var bodyStyle = "" +
     "background-color: cornsilk;";
 
+var boardOverlayStyle = "" +
+    "position: absolute;" +
+    "min-width: 100%;" +
+    "min-height: " + (30*Board.BOARD_HEIGHT*SCALE + (Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1)) +"px;" +
+    "background-color: #444;";
+
+var hideStyle = "" +
+    "display: none;";
+
 var tetrisCanvasStyle = "" +
     "display: table;" +
     "margin-left: auto;" +
@@ -130,6 +141,7 @@ var coopDividerStyle = "" +
 
 var boardStyle = "" +
     "float: left;" +
+    "position: relative;" +
     "display: block;" +
     "border-spacing: 1px;" +
     "border: "+ 10*SCALE +"px solid #888;" +
