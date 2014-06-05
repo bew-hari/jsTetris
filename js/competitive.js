@@ -73,7 +73,7 @@ function Competitive(){
                 }
                 break;
             case 50:    // '2' key pressed
-                if (tetrisBoard1.getScore() >= 3){
+                if (tetrisBoard1.getScore() >= 5){
                     tetrisBoard2.dropDown();
                     tetrisBoard1.modifyScore(-3);
                     tetrisBoard1.updateScore();
@@ -81,7 +81,7 @@ function Competitive(){
                 break;
             case 51:    // '3' key pressed
                 if (tetrisBoard1.getScore() >= 5){
-                    if (tetrisBoard2.speedUp(300, 5000)){
+                    if (tetrisBoard2.tempSpeedUp(300, 5000)){
                         tetrisBoard1.modifyScore(-5);
                         tetrisBoard1.updateScore();
                     }
@@ -116,7 +116,7 @@ function Competitive(){
                 }
                 break;
             case 190:   // '.' key pressed
-                if (tetrisBoard2.getScore() >= 3){
+                if (tetrisBoard2.getScore() >= 5){
                     tetrisBoard1.dropDown();
                     tetrisBoard2.modifyScore(-3);
                     tetrisBoard2.updateScore();
@@ -124,7 +124,7 @@ function Competitive(){
                 break;
             case 191:    // '/' key pressed
                 if (tetrisBoard2.getScore() >= 5){
-                    if (tetrisBoard1.speedUp(300, 5000)){
+                    if (tetrisBoard1.tempSpeedUp(300, 5000)){
                         tetrisBoard2.modifyScore(-5);
                         tetrisBoard2.updateScore();
                     }

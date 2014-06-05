@@ -29,6 +29,11 @@ function Panel(id, style){
         addPiecePreview(content, handle);
     };
 
+    self.addLevelHandle = function(handle){
+        var content = addBox("level", handle);
+        addPiecePreview(content, handle);
+    };
+
     self.getPanel = function(){ return panel;};
 
     var addBox = function(typeStr, handle){

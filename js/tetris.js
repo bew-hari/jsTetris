@@ -4,7 +4,7 @@
 
 window.onload = function(){
 
-    var mode = 2;
+    var mode = 0;
 
     var game;
 
@@ -69,6 +69,10 @@ function stylize(sheet){
     addCSSRule(sheet,".heldBox", heldBoxOffsetFromTop);
     addCSSRule(sheet,".heldLabel", labelStyle);
     addCSSRule(sheet,".held", contentStyle);
+
+    addCSSRule(sheet,".levelBox", levelBoxOffsetFromTop);
+    addCSSRule(sheet,".levelLabel", labelStyle);
+    addCSSRule(sheet,".level", contentStyle);
 
     addCSSRule(sheet,".previewTable", previewTableStyle);
     addCSSRule(sheet,".previewCell", previewCellStyle);
@@ -198,6 +202,7 @@ var altPanelTableStyle = "" +
 var scoreBoxOffsetFromTop = "top: " + 20*SCALE +"px;";
 var nextBoxOffsetFromTop = "top: " + 150*SCALE +"px;";
 var heldBoxOffsetFromTop = "top: " + 500*SCALE +"px;";
+var levelBoxOffsetFromTop = "top: " + 370*SCALE +"px;";
 
 // label th
 var labelStyle = "" +

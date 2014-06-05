@@ -4,7 +4,9 @@
     <list default="true" id="4c580e3b-3cfb-451c-86ec-f5c482b5c161" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/board.js" afterPath="$PROJECT_DIR$/js/board.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/competitive.js" afterPath="$PROJECT_DIR$/js/competitive.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/panel.js" afterPath="$PROJECT_DIR$/js/panel.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/tetris.js" afterPath="$PROJECT_DIR$/js/tetris.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="jsTetris.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,7 +50,7 @@
       <file leaf-file-name="tetris.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/tetris.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="27" selection-start="3429" selection-end="3429" vertical-scroll-proportion="0.39461884" vertical-offset="1401" max-vertical-offset="3510">
+            <state line="218" column="11" selection-start="6340" selection-end="6343" vertical-scroll-proportion="2.8161435" vertical-offset="1386" max-vertical-offset="3585">
               <folding />
             </state>
           </provider>
@@ -57,7 +59,7 @@
       <file leaf-file-name="panel.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/panel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="29" selection-start="1945" selection-end="1945" vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1440">
+            <state line="18" column="21" selection-start="416" selection-end="421" vertical-scroll-proportion="-5.1153846" vertical-offset="137" max-vertical-offset="1515">
               <folding />
             </state>
           </provider>
@@ -75,8 +77,76 @@
       <file leaf-file-name="board.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/board.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="97" column="29" selection-start="2818" selection-end="2818" vertical-scroll-proportion="-8.576923" vertical-offset="1232" max-vertical-offset="8985">
-              <folding />
+            <state line="577" column="20" selection-start="17017" selection-end="17017" vertical-scroll-proportion="0.0" vertical-offset="1165" max-vertical-offset="4740">
+              <folding>
+                <element signature="n#!!doc;n#Board#0" expanded="false" />
+                <element signature="e#2425#2460#0" expanded="false" />
+                <element signature="e#2904#3779#0" expanded="false" />
+                <element signature="e#3305#3746#0" expanded="false" />
+                <element signature="e#3478#3696#0" expanded="false" />
+                <element signature="e#4145#5899#0" expanded="false" />
+                <element signature="e#4219#5124#0" expanded="false" />
+                <element signature="e#4318#4586#0" expanded="false" />
+                <element signature="e#4474#4568#0" expanded="false" />
+                <element signature="e#4680#5110#0" expanded="false" />
+                <element signature="e#4778#5092#0" expanded="false" />
+                <element signature="e#4843#5070#0" expanded="false" />
+                <element signature="e#5142#5889#0" expanded="false" />
+                <element signature="e#5303#5488#0" expanded="false" />
+                <element signature="e#5376#5470#0" expanded="false" />
+                <element signature="e#5582#5875#0" expanded="false" />
+                <element signature="e#5681#5857#0" expanded="false" />
+                <element signature="e#6032#6139#0" expanded="false" />
+                <element signature="e#6821#7234#0" expanded="false" />
+                <element signature="e#6881#7224#0" expanded="false" />
+                <element signature="e#7338#7887#0" expanded="false" />
+                <element signature="e#7553#7881#0" expanded="false" />
+                <element signature="e#7652#7738#0" expanded="false" />
+                <element signature="e#7784#7871#0" expanded="false" />
+                <element signature="e#7894#7945#0" expanded="false" />
+                <element signature="e#8045#8537#0" expanded="false" />
+                <element signature="e#8101#8419#0" expanded="false" />
+                <element signature="e#8628#8830#0" expanded="false" />
+                <element signature="e#8681#8801#0" expanded="false" />
+                <element signature="e#9203#9360#0" expanded="false" />
+                <element signature="e#9493#9589#0" expanded="false" />
+                <element signature="e#9544#9583#0" expanded="false" />
+                <element signature="e#10596#10903#0" expanded="false" />
+                <element signature="e#10938#11058#0" expanded="false" />
+                <element signature="e#11090#11130#0" expanded="false" />
+                <element signature="e#11163#11454#0" expanded="false" />
+                <element signature="e#11269#11429#0" expanded="false" />
+                <element signature="e#11326#11419#0" expanded="false" />
+                <element signature="e#11514#12405#0" expanded="false" />
+                <element signature="e#11724#11958#0" expanded="false" />
+                <element signature="e#11995#12138#0" expanded="false" />
+                <element signature="e#12036#12128#0" expanded="false" />
+                <element signature="e#12237#12399#0" expanded="false" />
+                <element signature="e#12461#13091#0" expanded="false" />
+                <element signature="e#12681#12824#0" expanded="false" />
+                <element signature="e#12722#12814#0" expanded="false" />
+                <element signature="e#12927#13085#0" expanded="false" />
+                <element signature="e#13420#13862#0" expanded="false" />
+                <element signature="e#13514#13802#0" expanded="false" />
+                <element signature="e#13555#13767#0" expanded="false" />
+                <element signature="e#13890#14444#0" expanded="false" />
+                <element signature="e#14140#14228#0" expanded="false" />
+                <element signature="e#14242#14398#0" expanded="false" />
+                <element signature="e#14891#15795#0" expanded="false" />
+                <element signature="e#14990#15134#0" expanded="false" />
+                <element signature="e#15274#15435#0" expanded="false" />
+                <element signature="e#15445#15673#0" expanded="false" />
+                <element signature="e#16478#16640#0" expanded="false" />
+                <element signature="e#17170#17196#0" expanded="false" />
+                <element signature="n#!!block;n#debounce#0" expanded="false" />
+                <element signature="e#17550#17839#0" expanded="false" />
+                <element signature="e#17669#17763#0" expanded="false" />
+                <element signature="n#!!block;n#TimeOut#0" expanded="false" />
+                <element signature="e#17952#18038#0" expanded="false" />
+                <element signature="e#18070#18163#0" expanded="false" />
+                <element signature="n#!!block;n#sleep#0" expanded="false" />
+                <element signature="e#18315#18323#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -93,7 +163,7 @@
       <file leaf-file-name="competitive.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/competitive.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="35" selection-start="1127" selection-end="1127" vertical-scroll-proportion="-8.576923" vertical-offset="407" max-vertical-offset="2100">
+            <state line="118" column="50" selection-start="3626" selection-end="3626" vertical-scroll-proportion="-13.038462" vertical-offset="1431" max-vertical-offset="2100">
               <folding />
             </state>
           </provider>
@@ -102,7 +172,7 @@
       <file leaf-file-name="quickstart.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/quickstart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="8" selection-start="209" selection-end="209" vertical-scroll-proportion="0.0" vertical-offset="40" max-vertical-offset="795">
+            <state line="12" column="41" selection-start="268" selection-end="268" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
               <folding />
             </state>
           </provider>
@@ -132,12 +202,12 @@
         <option value="$PROJECT_DIR$/js/shape.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/cooperative.js" />
-        <option value="$PROJECT_DIR$/js/quickstart.js" />
         <option value="$PROJECT_DIR$/css/tetris.css" />
         <option value="$PROJECT_DIR$/js/panel.js" />
-        <option value="$PROJECT_DIR$/js/competitive.js" />
-        <option value="$PROJECT_DIR$/js/board.js" />
         <option value="$PROJECT_DIR$/js/tetris.js" />
+        <option value="$PROJECT_DIR$/js/quickstart.js" />
+        <option value="$PROJECT_DIR$/js/board.js" />
+        <option value="$PROJECT_DIR$/js/competitive.js" />
       </list>
     </option>
   </component>
@@ -350,7 +420,75 @@
     <entry file="file://$PROJECT_DIR$/js/board.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="196" column="34" selection-start="5544" selection-end="5544" vertical-scroll-proportion="0.0" vertical-offset="2815" max-vertical-offset="3735">
-          <folding />
+          <folding>
+            <element signature="n#!!doc;n#Board#0" expanded="false" />
+            <element signature="e#2425#2460#0" expanded="false" />
+            <element signature="e#2904#3779#0" expanded="false" />
+            <element signature="e#3305#3746#0" expanded="false" />
+            <element signature="e#3478#3696#0" expanded="false" />
+            <element signature="e#4145#5899#0" expanded="false" />
+            <element signature="e#4219#5124#0" expanded="false" />
+            <element signature="e#4318#4586#0" expanded="false" />
+            <element signature="e#4474#4568#0" expanded="false" />
+            <element signature="e#4680#5110#0" expanded="false" />
+            <element signature="e#4778#5092#0" expanded="false" />
+            <element signature="e#4843#5070#0" expanded="false" />
+            <element signature="e#5142#5889#0" expanded="false" />
+            <element signature="e#5303#5488#0" expanded="false" />
+            <element signature="e#5376#5470#0" expanded="false" />
+            <element signature="e#5582#5875#0" expanded="false" />
+            <element signature="e#5681#5857#0" expanded="false" />
+            <element signature="e#6032#6139#0" expanded="false" />
+            <element signature="e#6821#7234#0" expanded="false" />
+            <element signature="e#6881#7224#0" expanded="false" />
+            <element signature="e#7338#7887#0" expanded="false" />
+            <element signature="e#7553#7881#0" expanded="false" />
+            <element signature="e#7652#7738#0" expanded="false" />
+            <element signature="e#7784#7871#0" expanded="false" />
+            <element signature="e#7894#7945#0" expanded="false" />
+            <element signature="e#8045#8537#0" expanded="false" />
+            <element signature="e#8101#8419#0" expanded="false" />
+            <element signature="e#8628#8830#0" expanded="false" />
+            <element signature="e#8681#8801#0" expanded="false" />
+            <element signature="e#9203#9360#0" expanded="false" />
+            <element signature="e#9493#9589#0" expanded="false" />
+            <element signature="e#9544#9583#0" expanded="false" />
+            <element signature="e#10596#10903#0" expanded="false" />
+            <element signature="e#10938#11058#0" expanded="false" />
+            <element signature="e#11090#11130#0" expanded="false" />
+            <element signature="e#11163#11454#0" expanded="false" />
+            <element signature="e#11269#11429#0" expanded="false" />
+            <element signature="e#11326#11419#0" expanded="false" />
+            <element signature="e#11514#12405#0" expanded="false" />
+            <element signature="e#11724#11958#0" expanded="false" />
+            <element signature="e#11995#12138#0" expanded="false" />
+            <element signature="e#12036#12128#0" expanded="false" />
+            <element signature="e#12237#12399#0" expanded="false" />
+            <element signature="e#12461#13091#0" expanded="false" />
+            <element signature="e#12681#12824#0" expanded="false" />
+            <element signature="e#12722#12814#0" expanded="false" />
+            <element signature="e#12927#13085#0" expanded="false" />
+            <element signature="e#13420#13862#0" expanded="false" />
+            <element signature="e#13514#13802#0" expanded="false" />
+            <element signature="e#13555#13767#0" expanded="false" />
+            <element signature="e#13890#14444#0" expanded="false" />
+            <element signature="e#14140#14228#0" expanded="false" />
+            <element signature="e#14242#14398#0" expanded="false" />
+            <element signature="e#14891#15795#0" expanded="false" />
+            <element signature="e#14990#15134#0" expanded="false" />
+            <element signature="e#15274#15435#0" expanded="false" />
+            <element signature="e#15445#15673#0" expanded="false" />
+            <element signature="e#16478#16640#0" expanded="false" />
+            <element signature="e#17170#17196#0" expanded="false" />
+            <element signature="n#!!block;n#debounce#0" expanded="false" />
+            <element signature="e#17550#17839#0" expanded="false" />
+            <element signature="e#17669#17763#0" expanded="false" />
+            <element signature="n#!!block;n#TimeOut#0" expanded="false" />
+            <element signature="e#17952#18038#0" expanded="false" />
+            <element signature="e#18070#18163#0" expanded="false" />
+            <element signature="n#!!block;n#sleep#0" expanded="false" />
+            <element signature="e#18315#18323#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -364,27 +502,6 @@
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="27" selection-start="577" selection-end="577" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="405">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/quickstart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="8" selection-start="209" selection-end="209" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/competitive.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="35" selection-start="1127" selection-end="1127" vertical-scroll-proportion="-8.576923" vertical-offset="407" max-vertical-offset="2100">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/cooperative.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="27" selection-start="1013" selection-end="1013" vertical-scroll-proportion="0.0" vertical-offset="437" max-vertical-offset="1500">
           <folding />
         </state>
       </provider>
@@ -403,23 +520,112 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/panel.js">
+    <entry file="file://$PROJECT_DIR$/js/board.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="29" selection-start="1945" selection-end="1945" vertical-scroll-proportion="0.0" vertical-offset="745" max-vertical-offset="1440">
+        <state line="577" column="20" selection-start="17017" selection-end="17017" vertical-scroll-proportion="0.0" vertical-offset="1165" max-vertical-offset="4740">
+          <folding>
+            <element signature="n#!!doc;n#Board#0" expanded="false" />
+            <element signature="e#2425#2460#0" expanded="false" />
+            <element signature="e#2904#3779#0" expanded="false" />
+            <element signature="e#3305#3746#0" expanded="false" />
+            <element signature="e#3478#3696#0" expanded="false" />
+            <element signature="e#4145#5899#0" expanded="false" />
+            <element signature="e#4219#5124#0" expanded="false" />
+            <element signature="e#4318#4586#0" expanded="false" />
+            <element signature="e#4474#4568#0" expanded="false" />
+            <element signature="e#4680#5110#0" expanded="false" />
+            <element signature="e#4778#5092#0" expanded="false" />
+            <element signature="e#4843#5070#0" expanded="false" />
+            <element signature="e#5142#5889#0" expanded="false" />
+            <element signature="e#5303#5488#0" expanded="false" />
+            <element signature="e#5376#5470#0" expanded="false" />
+            <element signature="e#5582#5875#0" expanded="false" />
+            <element signature="e#5681#5857#0" expanded="false" />
+            <element signature="e#6032#6139#0" expanded="false" />
+            <element signature="e#6821#7234#0" expanded="false" />
+            <element signature="e#6881#7224#0" expanded="false" />
+            <element signature="e#7338#7887#0" expanded="false" />
+            <element signature="e#7553#7881#0" expanded="false" />
+            <element signature="e#7652#7738#0" expanded="false" />
+            <element signature="e#7784#7871#0" expanded="false" />
+            <element signature="e#7894#7945#0" expanded="false" />
+            <element signature="e#8045#8537#0" expanded="false" />
+            <element signature="e#8101#8419#0" expanded="false" />
+            <element signature="e#8628#8830#0" expanded="false" />
+            <element signature="e#8681#8801#0" expanded="false" />
+            <element signature="e#9203#9360#0" expanded="false" />
+            <element signature="e#9493#9589#0" expanded="false" />
+            <element signature="e#9544#9583#0" expanded="false" />
+            <element signature="e#10596#10903#0" expanded="false" />
+            <element signature="e#10938#11058#0" expanded="false" />
+            <element signature="e#11090#11130#0" expanded="false" />
+            <element signature="e#11163#11454#0" expanded="false" />
+            <element signature="e#11269#11429#0" expanded="false" />
+            <element signature="e#11326#11419#0" expanded="false" />
+            <element signature="e#11514#12405#0" expanded="false" />
+            <element signature="e#11724#11958#0" expanded="false" />
+            <element signature="e#11995#12138#0" expanded="false" />
+            <element signature="e#12036#12128#0" expanded="false" />
+            <element signature="e#12237#12399#0" expanded="false" />
+            <element signature="e#12461#13091#0" expanded="false" />
+            <element signature="e#12681#12824#0" expanded="false" />
+            <element signature="e#12722#12814#0" expanded="false" />
+            <element signature="e#12927#13085#0" expanded="false" />
+            <element signature="e#13420#13862#0" expanded="false" />
+            <element signature="e#13514#13802#0" expanded="false" />
+            <element signature="e#13555#13767#0" expanded="false" />
+            <element signature="e#13890#14444#0" expanded="false" />
+            <element signature="e#14140#14228#0" expanded="false" />
+            <element signature="e#14242#14398#0" expanded="false" />
+            <element signature="e#14891#15795#0" expanded="false" />
+            <element signature="e#14990#15134#0" expanded="false" />
+            <element signature="e#15274#15435#0" expanded="false" />
+            <element signature="e#15445#15673#0" expanded="false" />
+            <element signature="e#16478#16640#0" expanded="false" />
+            <element signature="e#17170#17196#0" expanded="false" />
+            <element signature="n#!!block;n#debounce#0" expanded="false" />
+            <element signature="e#17550#17839#0" expanded="false" />
+            <element signature="e#17669#17763#0" expanded="false" />
+            <element signature="n#!!block;n#TimeOut#0" expanded="false" />
+            <element signature="e#17952#18038#0" expanded="false" />
+            <element signature="e#18070#18163#0" expanded="false" />
+            <element signature="n#!!block;n#sleep#0" expanded="false" />
+            <element signature="e#18315#18323#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/cooperative.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="27" selection-start="1013" selection-end="1013" vertical-scroll-proportion="0.0" vertical-offset="555" max-vertical-offset="1500">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/board.js">
+    <entry file="file://$PROJECT_DIR$/js/competitive.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="29" selection-start="2818" selection-end="2818" vertical-scroll-proportion="-8.576923" vertical-offset="1232" max-vertical-offset="8985">
+        <state line="118" column="50" selection-start="3626" selection-end="3626" vertical-scroll-proportion="-13.038462" vertical-offset="1431" max-vertical-offset="2100">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/quickstart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="41" selection-start="268" selection-end="268" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/panel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="21" selection-start="416" selection-end="421" vertical-scroll-proportion="-5.1153846" vertical-offset="137" max-vertical-offset="1515">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/tetris.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="27" selection-start="3429" selection-end="3429" vertical-scroll-proportion="0.39461884" vertical-offset="1401" max-vertical-offset="3510">
+        <state line="218" column="11" selection-start="6340" selection-end="6343" vertical-scroll-proportion="2.8161435" vertical-offset="1386" max-vertical-offset="3585">
           <folding />
         </state>
       </provider>

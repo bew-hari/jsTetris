@@ -15,6 +15,7 @@ function Board(){
     var curPiece = new Shape();
     var nextPiece = new Shape();
     var heldPiece = new Shape();
+    var piecesPlayed = 0;
 
     self.isPaused = false;
     self.isStarted = false;
@@ -28,11 +29,13 @@ function Board(){
     var timeOut;
 
     var score = 0;
+    var level = 1;
 
     // for display purposes
     var scoreHandle = "Score";
     var nextHandle = "Next";
     var heldHandle = "Held";
+    var levelHandle = "Level";
 
     // private member getters
     self.getID = function(){ return boardID;};
@@ -42,11 +45,13 @@ function Board(){
     self.getCurY = function(){ return curY;};
     self.getScore = function(){ return score;};
     self.getBoard = function(){ return board;};
+    self.getPiecesPlayed = function(){ return piecesPlayed;};
 
     // modifiers
     self.setHeldPieceShape = function(shape){ heldPiece.setShape(shape); drawHeld();};
     self.modifyScore = function(change){ score += change;};
     self.updateScore = function(){ document.getElementById(boardID+scoreHandle).innerHTML = score.toString();};
+    self.setPiecesPlayed = function(numPlayed){ piecesPlayed = numPlayed;};
 
     // returns the shape at coordinates (x,y)
     self.shapeAt = function(x, y){ return board[y * Board.BOARD_WIDTH + x];};
@@ -84,6 +89,9 @@ function Board(){
         panel.addScoreHandle(scoreHandle);
         panel.addNextHandle(nextHandle);
         panel.addHeldHandle(heldHandle);
+
+        if (mode != Board.MODE.COMP)
+            panel.addLevelHandle(levelHandle);
 
         return panel.getPanel();
     };
@@ -183,6 +191,8 @@ function Board(){
             curPiece.setShape(Shape.shapeType.NoShape);
             repaint();
         }
+
+        self.updateScore();
     };
 
     // paints board by altering table cell classes
@@ -274,6 +284,12 @@ function Board(){
         isSwapped = false;
         self.heldSwapped = false;
 
+        if (++piecesPlayed == 20) {
+            self.levelUp();
+            if (mode == Board.MODE.COOP)
+                otherBoard.levelUp();
+        }
+
         var x,y;
         for (var i = 0; i < 4; i++) {
             x = curX + curPiece.x(i);
@@ -303,11 +319,12 @@ function Board(){
         isSwapped = false;
 
         clearBoard();
-        nextPiece.setRandomShape();
+        document.getElementById(boardID+scoreHandle).innerHTML = score.toString();
+        document.getElementById(boardID+levelHandle).innerHTML = level.toString();
 
+        nextPiece.setRandomShape();
         newPiece();
 
-        document.getElementById(boardID+scoreHandle).innerHTML = score.toString();
         timer = setInterval(function(){ tick();}, curSpeed);
     };
 
@@ -460,6 +477,21 @@ function Board(){
         drawHeld();
     };
 
+    self.swapHeld = function(other){
+        if ((mode != Board.MODE.COOP) || (otherBoard.getMode() != Board.MODE.COOP))
+            return;
+
+        if (self.heldSwapped || other.heldSwapped)
+            return;
+
+        var shape = other.getHeldPieceShape();
+        other.setHeldPieceShape(heldPiece.getShape());
+        heldPiece.setShape(shape);
+        drawHeld();
+
+        self.heldSwapped = true;
+    };
+
     self.upOneLine = function(){
 
         // copy every cell up one line
@@ -492,10 +524,20 @@ function Board(){
     };
 
     // speeds up the board by increment for a duration of duration
-    self.speedUp = function(increment, duration){
+    self.tempSpeedUp = function(increment, duration){
         // disable stacking
         if (isSpedUp)
             return false;
+
+        isSpedUp = true;
+
+        speedUp(increment);
+        timeOut = new TimeOut(function(){ resetSpeed();}, 5000);
+
+        return true;
+    };
+
+    var speedUp = function(increment){
 
         curSpeed -= increment;
 
@@ -505,9 +547,6 @@ function Board(){
         // set new interval
         clearInterval(timer);
         timer = setInterval(function(){ tick();}, curSpeed);
-        isSpedUp = true;
-
-        timeOut = new TimeOut(function(){ resetSpeed();}, 5000);
 
         return true;
     };
@@ -520,26 +559,23 @@ function Board(){
         isSpedUp = false;
     };
 
-    self.swapHeld = function(other){
-        if ((mode != Board.MODE.COOP) || (otherBoard.getMode() != Board.MODE.COOP))
-            return;
+    self.levelUp = function(){
+        // reset number of played pieces
+        piecesPlayed = 0;
 
-        if (self.heldSwapped || other.heldSwapped)
-            return;
+        // update level
+        level++;
+        document.getElementById(boardID+levelHandle).innerHTML = level.toString();
 
-        var shape = other.getHeldPieceShape();
-        other.setHeldPieceShape(heldPiece.getShape());
-        heldPiece.setShape(shape);
-        drawHeld();
-
-        self.heldSwapped = true;
+        // speed up board
+        speedUp(100);
     };
 }
 
 Board.BOARD_WIDTH = 10;
 Board.BOARD_HEIGHT = 20;
 Board.SPWN_HEIGHT = 4;
-Board.BASE_SPEED = 500;      // base interval between ticks (in milliseconds)
+Board.BASE_SPEED = 600;      // base interval between ticks (in milliseconds)
 Board.MAX_SPEED = 100;
 
 Board.MODE = {
