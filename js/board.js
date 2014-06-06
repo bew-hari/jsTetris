@@ -234,14 +234,15 @@ function Board(){
 
         if (overflow()){
             self.stop();
-            otherBoard.stop();
+            self.drawLose();
+
+            if (mode != Board.MODE.QKST)
+                otherBoard.stop();
 
             if (mode == Board.MODE.COMP){
-                self.drawLose();
                 otherBoard.drawWin();
             }
             else if (mode == Board.MODE.COOP){
-                self.drawLose();
                 otherBoard.drawLose();
             }
         }
