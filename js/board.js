@@ -102,11 +102,6 @@ function Board(){
         dispBoard.className = "board";
         dispBoard.id = boardID;
 
-        var overlay = document.createElement('div');
-        overlay.className = "boardOverlay";
-        overlay.classList.add("hide");
-        dispBoard.appendChild(overlay);
-
         var row, cell;
         for (var i = 0; i < Board.BOARD_HEIGHT+Board.SPWN_HEIGHT; i++){
             row = document.createElement('tr');
@@ -321,7 +316,9 @@ function Board(){
 
         clearBoard();
         document.getElementById(boardID+scoreHandle).innerHTML = score.toString();
-        document.getElementById(boardID+levelHandle).innerHTML = level.toString();
+
+        if (mode != Board.MODE.COMP)
+            document.getElementById(boardID+levelHandle).innerHTML = level.toString();
 
         nextPiece.setRandomShape();
         newPiece();
@@ -336,24 +333,26 @@ function Board(){
 
         self.isPaused = !self.isPaused;
 
-        var overlay, i;
         if (self.isPaused){
             clearInterval(timer);
             if (isSpedUp)
                 timeOut.pause();
 
-            overlay = document.getElementsByClassName("boardOverlay");
-            for (i = 0; i < overlay.length; i++)
-                overlay[i].classList.remove("hide");
+            var cell;
+            for (var i = 0; i < Board.BOARD_HEIGHT+Board.SPWN_HEIGHT; i++){
+                for (var j = 0; j < Board.BOARD_WIDTH; j++){
+                    cell = document.getElementById(boardID).rows[Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1 - i].cells[j];
+                    cell.className = "boardCell";
+                    cell.classList.add(Shape.shapeTypeString[8]);
+                }
+            }
         }
         else {
             timer = setInterval(function(){ tick();}, curSpeed);
             if (isSpedUp)
                 timeOut.resume();
 
-            overlay = document.getElementsByClassName("boardOverlay");
-            for (i = 0; i < overlay.length; i++)
-                overlay[i].classList.add("hide");
+            repaint();
         }
     };
 
@@ -569,7 +568,7 @@ function Board(){
         document.getElementById(boardID+levelHandle).innerHTML = level.toString();
 
         // speed up board
-        speedUp(100);
+        speedUp(50);
     };
 }
 

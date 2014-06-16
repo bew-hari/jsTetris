@@ -2,9 +2,56 @@
  * Created by bewharichanwong on 5/25/14 AD.
  */
 
+var mode;
+
 window.onload = function(){
 
-    var mode = 0;
+    // stylize CSS sheet
+    var sheet = stylesheet();
+    stylize(sheet);
+
+    menu();
+};
+
+function menu(){
+    var canvas = document.getElementById("tetrisCanvas");
+
+    var menu = document.createElement('table');
+    menu.id = "menu";
+    var header = document.createElement('th');
+    header.appendChild(document.createTextNode("Mode Select"));
+    header.style.paddingBottom = "20px";
+    menu.appendChild(header);
+
+    var qkst = document.createElement('tr');
+    var button = document.createElement('button');
+    button.appendChild(document.createTextNode("Quick Start"));
+    button.onclick = function(){mode = 0; play();};
+    qkst.appendChild(button);
+
+    var comp = document.createElement('tr');
+    button = document.createElement('button');
+    button.appendChild(document.createTextNode("Competitive"));
+    button.onclick = function(){mode = 1; play();};
+    comp.appendChild(button);
+
+    var coop = document.createElement('tr');
+    var button = document.createElement('button');
+    button.appendChild(document.createTextNode("Cooperative"));
+    button.onclick = function(){mode = 2; play();};
+    coop.appendChild(button);
+
+    menu.appendChild(qkst);
+    menu.appendChild(comp);
+    menu.appendChild(coop);
+
+    canvas.appendChild(menu);
+}
+
+function play(){
+
+    var menu = document.getElementById("menu");
+    menu.parentNode.removeChild(menu);
 
     var game;
 
@@ -14,12 +61,7 @@ window.onload = function(){
         game = new Competitive();
     else if (mode == 2)
         game = new Cooperative();
-
-    // stylize CSS sheet
-    var sheet = stylesheet();
-
-    stylize(sheet);
-};
+}
 
 
 function stylesheet(){
@@ -27,7 +69,7 @@ function stylesheet(){
     style.appendChild(document.createTextNode(""));
     document.head.appendChild(style);
     return style.sheet;
-};
+}
 
 
 function stylize(sheet){
@@ -41,12 +83,13 @@ function stylize(sheet){
     addCSSRule(sheet,"#tetrisCanvas", tetrisCanvasStyle);
     addCSSRule(sheet,".tetrisContainer", tetrisContainerStyle);
 
+    addCSSRule(sheet,"#menu", menuStyle);
+    addCSSRule(sheet,"button", buttonStyle);
+
     // style boards
     addCSSRule(sheet,".board", boardStyle);
     addCSSRule(sheet,".spawnArea", "display: none;");
     addCSSRule(sheet,".boardCell", boardCellStyle);
-    addCSSRule(sheet,".boardOverlay", boardOverlayStyle);
-    addCSSRule(sheet,".hide", hideStyle);
 
     // style divider
     addCSSRule(sheet,".compDivider", compDividerStyle);
@@ -109,15 +152,6 @@ var documentStyle = "" +
 var bodyStyle = "" +
     "background-color: cornsilk;";
 
-var boardOverlayStyle = "" +
-    "position: absolute;" +
-    "min-width: 100%;" +
-    "min-height: " + (30*Board.BOARD_HEIGHT*SCALE + (Board.BOARD_HEIGHT+Board.SPWN_HEIGHT - 1)) +"px;" +
-    "background-color: #444;";
-
-var hideStyle = "" +
-    "display: none;";
-
 var tetrisCanvasStyle = "" +
     "display: table;" +
     "margin-left: auto;" +
@@ -130,6 +164,16 @@ var tetrisContainerStyle = "" +
     //"margin-left: " + 50*SCALE +"px;" +
     //"margin-right: " + 50*SCALE +"px;" +
     "";
+
+var menuStyle = "" +
+    "margin-top: 200px;" +
+    "font-family: sans-serif;" +
+    "font-size: "+ SCALE*1.5 +"em;" +
+    "text-align: center;";
+
+var buttonStyle = "" +
+    "padding: 3px;" +
+    "font-size: "+ SCALE*0.5 +"em;";
 
 var compDividerStyle = "" +
     "display: table;" +

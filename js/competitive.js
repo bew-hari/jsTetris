@@ -23,7 +23,6 @@ function Competitive(){
 
     window.addEventListener('keydown', respond, false);
 
-
     function respond(e){
 
         if (!tetrisBoard1.isStarted || !tetrisBoard2.isStarted)
